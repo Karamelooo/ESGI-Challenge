@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="card-title">
+        <h2>{% block title %}{% endblock %}</h2>
+    </div>
+    <div class="card-body">
+        {% block body %}{% endblock %}
+
+        {{ condition|default(true) }}
+    </div>
+</div>

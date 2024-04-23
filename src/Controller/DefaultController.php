@@ -15,11 +15,4 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
-
-    public function contact(): Response
-    {
-        return $this->render('default/index.html', [
-            'controller_name' => 'DefaultController',
-        ]);
-    }
 }

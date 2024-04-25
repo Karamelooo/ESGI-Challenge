@@ -32,7 +32,7 @@ class Compagny
     private ?string $email = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $siret = null;
+    private ?string $siret = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $naf = null;

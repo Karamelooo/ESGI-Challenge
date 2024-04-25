@@ -7,6 +7,7 @@ use App\Form\CompagnyType;
 use App\Repository\CompagnyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +31,21 @@ class CompagnyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $logoFile = $form->get('logo_path')->getData();
+            if ($logoFile) {
+                $newFilename = uniqid().'.'.$logoFile->guessExtension();
+                try {
+                    $logoFile->move(
+                        $this->getParameter('dossier_destination'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // Gérer l'exception si nécessaire
+                }
+
+                // Mettez à jour le nom de fichier dans l'entité
+                $compagny->setLogoPath($newFilename);
+            }
             $entityManager->persist($compagny);
             $entityManager->flush();
 

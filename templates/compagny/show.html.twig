@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Compagny{% endblock %}
+{% block title %}Entreprise{% endblock %}
 
 {% block body %}
-    <h1>Compagny</h1>
+    <h1>Entreprise</h1>
 
     <table class="table">
         <tbody>
@@ -12,23 +12,23 @@
                 <td>{{ compagny.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>Nom</th>
                 <td>{{ compagny.name }}</td>
             </tr>
             <tr>
-                <th>Logo_path</th>
+                <th>Logo</th>
                 <td>{{ compagny.logoPath }}</td>
             </tr>
             <tr>
-                <th>Adress</th>
+                <th>Adresse</th>
                 <td>{{ compagny.adress }}</td>
             </tr>
             <tr>
-                <th>City</th>
+                <th>Ville</th>
                 <td>{{ compagny.city }}</td>
             </tr>
             <tr>
-                <th>Zip_code</th>
+                <th>Code postal</th>
                 <td>{{ compagny.zipCode }}</td>
             </tr>
             <tr>
@@ -40,15 +40,15 @@
                 <td>{{ compagny.siret }}</td>
             </tr>
             <tr>
-                <th>Naf</th>
+                <th>NAF</th>
                 <td>{{ compagny.naf }}</td>
             </tr>
             <tr>
-                <th>Website</th>
+                <th>Site Web</th>
                 <td>{{ compagny.website }}</td>
             </tr>
             <tr>
-                <th>Phone</th>
+                <th>Numéro de téléphone</th>
                 <td>{{ compagny.phone }}</td>
             </tr>
             <tr>
@@ -58,9 +58,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_compagny_index') }}">back to list</a>
+    <a href="{{ path('app_compagny_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_compagny_edit', {'id': compagny.id}) }}">edit</a>
+    <a href="{{ path('app_compagny_edit', {'id': compagny.id}) }}">Modifier</a>
 
     {{ include('compagny/_delete_form.html.twig') }}
 {% endblock %}

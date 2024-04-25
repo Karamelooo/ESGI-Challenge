@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Compagny index{% endblock %}
+{% block title %}Entreprises{% endblock %}
 
 {% block body %}
-    <h1>Compagny index</h1>
+    <h1>Entreprises</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Logo_path</th>
-                <th>Adress</th>
-                <th>City</th>
-                <th>Zip_code</th>
+                <th>Nom</th>
+                <th>Logo</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Code postal</th>
                 <th>Email</th>
                 <th>Siret</th>
-                <th>Naf</th>
-                <th>Website</th>
-                <th>Phone</th>
+                <th>NAF</th>
+                <th>Site Web</th>
+                <th>Numéro de téléphone</th>
                 <th>Capital</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -39,17 +39,17 @@
                 <td>{{ compagny.phone }}</td>
                 <td>{{ compagny.capital }}</td>
                 <td>
-                    <a href="{{ path('app_compagny_show', {'id': compagny.id}) }}">show</a>
-                    <a href="{{ path('app_compagny_edit', {'id': compagny.id}) }}">edit</a>
+                    <a href="{{ path('app_compagny_show', {'id': compagny.id}) }}">Voir</a>
+                    <a href="{{ path('app_compagny_edit', {'id': compagny.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="13">no records found</td>
+                <td colspan="13">Aucune entreprise trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_compagny_new') }}">Create new</a>
+    <a href="{{ path('app_compagny_new') }}">Nouvelle</a>
 {% endblock %}

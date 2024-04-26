@@ -46,6 +46,7 @@ class CompagnyController extends AbstractController
                 // Mettez à jour le nom de fichier dans l'entité
                 $compagny->setLogoPath($newFilename);
             }
+            $compagny->setCreatedAt(new \DateTime());
             $entityManager->persist($compagny);
             $entityManager->flush();
 

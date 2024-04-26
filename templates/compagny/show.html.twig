@@ -55,6 +55,10 @@
                 <th>Capital</th>
                 <td>{{ compagny.capital }}</td>
             </tr>
+            <tr>
+                <th>Date de création</th>
+                <td>{{ compagny.createdAt|date('d/m/Y') }}</td>
+            </tr>
         </tbody>
     </table>
 

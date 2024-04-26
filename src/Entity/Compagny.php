@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CompagnyRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CompagnyRepository::class)]
@@ -45,6 +46,9 @@ class Compagny
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $capital = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $created_at = null;
 
     public function getId(): ?int
     {
@@ -179,6 +183,18 @@ class Compagny
     public function setCapital(?string $capital): static
     {
         $this->capital = $capital;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): static
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }

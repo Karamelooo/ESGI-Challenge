@@ -20,6 +20,7 @@
                 <th>Site Web</th>
                 <th>Numéro de téléphone</th>
                 <th>Capital</th>
+                <th>Date de création</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -38,6 +39,7 @@
                 <td>{{ compagny.website }}</td>
                 <td>{{ compagny.phone }}</td>
                 <td>{{ compagny.capital }}</td>
+                <td>{{ compagny.createdAt|date('d/m/Y') }}</td>
                 <td>
                     <a href="{{ path('app_compagny_show', {'id': compagny.id}) }}">Voir</a>
                     <a href="{{ path('app_compagny_edit', {'id': compagny.id}) }}">Modifier</a>

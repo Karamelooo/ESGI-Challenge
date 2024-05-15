@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entreprises{% endblock %}
+
+{% block body %}
+    <h1>Entreprises</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Logo</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Code postal</th>
+                <th>Email</th>
+                <th>Siret</th>
+                <th>NAF</th>
+                <th>Site Web</th>
+                <th>Numéro de téléphone</th>
+                <th>Capital</th>
+                <th>Date de création</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for compagny in compagnies %}
+            <tr>
+                <td>{{ compagny.id }}</td>
+                <td>{{ compagny.name }}</td>
+                <td>{{ compagny.logoPath }}</td>
+                <td>{{ compagny.adress }}</td>
+                <td>{{ compagny.city }}</td>
+                <td>{{ compagny.zipCode }}</td>
+                <td>{{ compagny.email }}</td>
+                <td>{{ compagny.siret }}</td>
+                <td>{{ compagny.naf }}</td>
+                <td>{{ compagny.website }}</td>
+                <td>{{ compagny.phone }}</td>
+                <td>{{ compagny.capital }}</td>
+                <td>{{ compagny.createdAt|date('d/m/Y') }}</td>
+                <td>
+                    <a href="{{ path('app_compagny_show', {'id': compagny.id}) }}">Voir</a>
+                    <a href="{{ path('app_compagny_edit', {'id': compagny.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">Aucune entreprise trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_compagny_new') }}">Nouvelle</a>
+{% endblock %}

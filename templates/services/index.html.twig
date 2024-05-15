@@ -9,13 +9,12 @@
         <table class="mx-auto">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Selling_price</th>
-                    <th>Purchase_price</th>
-                    <th>Tax</th>
-                    <th>Last_update</th>
+                    <th>Nom</th>
+                    <th>Famille</th>
+                    <th>Prix de vente</th>
+                    <th>Prix d'achat</th>
+                    <th>Taxes</th>
+                    <th>Dernière modification</th>
                     <th>actions</th>
                 </tr>
             </thead>
@@ -30,22 +29,22 @@
                             <td>{{ service.sellingPrice }}</td>
                             <td>{{ service.purchasePrice }}</td>
                             <td>{{ service.tax }}</td>
-                            <td>{{ service.lastUpdate ? service.lastUpdate|date('Y-m-d') : '' }}</td>
+                            <td>{{ service.lastUpdate ? service.lastUpdate|date('d-m-Y') : '' }}</td>
                             <td>
-                                <a href="{{ path('app_services_show', {'id': service.id}) }}">show</a>
-                                <a href="{{ path('app_services_edit', {'id': service.id}) }}">edit</a>
+                                <a href="{{ path('app_services_show', {'id': service.id}) }}">Voir</a>
+                                <a href="{{ path('app_services_edit', {'id': service.id}) }}">Modifier</a>
                             </td>
                         </tr>
                     {% endblock %}
                 {% endembed %}
             {% else %}
                 <tr>
-                    <td colspan="8">no records found</td>
+                    <td colspan="8">Aucune donnée trouvée</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
 
-        <a href="{{ path('app_services_new') }}">Create new</a>
+        <a href="{{ path('app_services_new') }}">Nouveau</a>
     </div>
 {% endblock %}

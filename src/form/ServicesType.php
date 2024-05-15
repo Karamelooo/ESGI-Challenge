@@ -12,12 +12,32 @@ class ServicesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('category')
-            ->add('selling_price')
-            ->add('purchase_price')
-            ->add('tax')
-            ->add('last_update')
+            ->add('name', TextType::class, [
+                'label' => 'Nom',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['message' => 'Le nom est requis.']),
+                ],
+            ])
+            ->add('category', TextType::class, [
+                'label' => 'Famille',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['message' => 'La famille est requise.']),
+                ],
+            ])
+            ->add('selling_price', IntegerType::class, [
+                'label' => 'Prix de vente',
+                ],
+            ])
+            ->add('purchase_price', IntegerType::class, [
+                'label' => 'Prix d\'achat',
+                ],
+            ])
+            ->add('tax', IntegerType::class, [
+                'label' => 'TVA',
+                ],
+            ])
         ;
     }
 

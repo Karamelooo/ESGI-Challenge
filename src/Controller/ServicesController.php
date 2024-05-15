@@ -30,6 +30,7 @@ class ServicesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $service->setLastUpdate(new \DateTime());
             $entityManager->persist($service);
             $entityManager->flush();
 
@@ -57,6 +58,7 @@ class ServicesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $service->setLastUpdate(new \DateTime());
             $entityManager->flush();
 
             return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);

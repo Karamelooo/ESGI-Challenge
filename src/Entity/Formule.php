@@ -23,6 +23,10 @@ class Formule
     #[ORM\JoinColumn(nullable: false)]
     private ?Subscription $subscription = null;
 
+    #[ORM\ManyToOne(inversedBy: 'Formule')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?FormuleReducer $formuleReducer = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +64,18 @@ class Formule
     public function setSubscription(?Subscription $subscription): static
     {
         $this->subscription = $subscription;
+
+        return $this;
+    }
+
+    public function getFormuleReducer(): ?FormuleReducer
+    {
+        return $this->formuleReducer;
+    }
+
+    public function setFormuleReducer(?FormuleReducer $formuleReducer): static
+    {
+        $this->formuleReducer = $formuleReducer;
 
         return $this;
     }

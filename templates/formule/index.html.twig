@@ -16,11 +16,11 @@
         <tbody>
         {% for formule in formules %}
             <tr>
-                <td>{{ formule.id }}</td>
                 <td>{{ formule.price }}</td>
                 <td>{{ formule.name }}</td>
                 <td>
                     <a href="{{ path('app_formule_show', {'id': formule.id}) }}">Voir</a>
+                    <a href="{{ path('app_formule_edit', {'id': formule.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -31,4 +31,5 @@
         </tbody>
     </table>
 
+    <a href="{{ path('app_formule_new') }}">Nouvelle</a>
 {% endblock %}

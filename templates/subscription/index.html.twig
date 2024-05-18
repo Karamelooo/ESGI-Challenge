@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abonnements{% endblock %}
+
+{% block body %}
+    <h1>Abonnement</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for subscription in subscriptions %}
+            <tr>
+                <td>{{ subscription.id }}</td>
+                <td>{{ subscription.startDate ? subscription.startDate|date('Y-m-d') : '' }}</td>
+                <td>{{ subscription.endDate ? subscription.endDate|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_subscription_show', {'id': subscription.id}) }}">Voir</a>
+                    <a href="{{ path('app_subscription_edit', {'id': subscription.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun abonnement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_subscription_new') }}">Nouvel</a>
+{% endblock %}

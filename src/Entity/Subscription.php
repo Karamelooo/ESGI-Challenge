@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SubscriptionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,14 @@ class Subscription
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end_date = null;
+
+    #[ORM\OneToMany(mappedBy: 'subscription', targetEntity: formule::class)]
+    private Collection $formule;
+
+    public function __construct()
+    {
+        $this->formule = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +70,36 @@ class Subscription
     public function setEndDate(\DateTimeInterface $end_date): static
     {
         $this->end_date = $end_date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, formule>
+     */
+    public function getFormule(): Collection
+    {
+        return $this->formule;
+    }
+
+    public function addFormule(formule $formule): static
+    {
+        if (!$this->formule->contains($formule)) {
+            $this->formule->add($formule);
+            $formule->setSubscription($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormule(formule $formule): static
+    {
+        if ($this->formule->removeElement($formule)) {
+            // set the owning side to null (unless already changed)
+            if ($formule->getSubscription() === $this) {
+                $formule->setSubscription(null);
+            }
+        }
 
         return $this;
     }

@@ -8,15 +8,11 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ subscription.id }}</td>
-            </tr>
-            <tr>
-                <th>Start_date</th>
+                <th>Date de début</th>
                 <td>{{ subscription.startDate ? subscription.startDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>End_date</th>
+                <th>Date de fin</th>
                 <td>{{ subscription.endDate ? subscription.endDate|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>

@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entreprise{% endblock %}
+
+{% block body %}
+    <h1>Entreprise</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ compagny.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ compagny.name }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td>{{ compagny.logoPath }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ compagny.adress }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ compagny.city }}</td>
+            </tr>
+            <tr>
+                <th>Code postal</th>
+                <td>{{ compagny.zipCode }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ compagny.email }}</td>
+            </tr>
+            <tr>
+                <th>Siret</th>
+                <td>{{ compagny.siret }}</td>
+            </tr>
+            <tr>
+                <th>NAF</th>
+                <td>{{ compagny.naf }}</td>
+            </tr>
+            <tr>
+                <th>Site Web</th>
+                <td>{{ compagny.website }}</td>
+            </tr>
+            <tr>
+                <th>Numéro de téléphone</th>
+                <td>{{ compagny.phone }}</td>
+            </tr>
+            <tr>
+                <th>Capital</th>
+                <td>{{ compagny.capital }}</td>
+            </tr>
+            <tr>
+                <th>Date de création</th>
+                <td>{{ compagny.createdAt|date('d/m/Y') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_compagny_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('app_compagny_edit', {'id': compagny.id}) }}">Modifier</a>
+
+    {{ include('compagny/_delete_form.html.twig') }}
+{% endblock %}

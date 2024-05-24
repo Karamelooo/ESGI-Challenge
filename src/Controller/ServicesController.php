@@ -17,8 +17,16 @@ class ServicesController extends AbstractController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(ServicesRepository $servicesRepository): Response
     {
+        $services = $servicesRepository->findAll();
+        $publishedServices = [];
+
+        foreach ($services as $service) {
+            if($service->isStatus() == false) {
+                $publishedServices[] = $service;
+            }
+        }
         return $this->render('services/index.html.twig', [
-            'services' => $servicesRepository->findAll(),
+            'services' => $publishedServices,
         ]);
     }
 
@@ -30,6 +38,7 @@ class ServicesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $service->setStatus(false);
             $service->setLastUpdate(new \DateTime());
             $entityManager->persist($service);
             $entityManager->flush();
@@ -43,33 +52,57 @@ class ServicesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
-    public function show(Services $service): Response
+    #[Route('/archived', name: 'archived', methods: ['GET'])]
+    public function archived(ServicesRepository $servicesRepository): Response
     {
-        return $this->render('services/show.html.twig', [
-            'service' => $service,
+        $services = $servicesRepository->findAll();
+        $publishedServices = [];
+        foreach ($services as $service) {
+            if($service->isStatus() == true) {
+                $publishedServices[] = $service;
+            }
+        }
+        return $this->render('services/archived.html.twig', [
+            'services' => $publishedServices,
         ]);
     }
-
+    
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Services $service, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ServicesType::class, $service);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $service->setLastUpdate(new \DateTime());
             $entityManager->flush();
-
+            
             return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        
         return $this->render('services/edit.html.twig', [
             'service' => $service,
             'form' => $form,
         ]);
     }
+    
+    
+    #[Route('/{id}/archive', name: 'change_status', methods: ['GET', 'POST'])]
+    public function editStatus(Request $request, Services $service, EntityManagerInterface $entityManager): Response
+    {
+        if ($service->isStatus() == true) {
+            $service->setStatus(false);
+            $entityManager->flush();
+            
+            return $this->redirectToRoute('app_services_archived', [], Response::HTTP_SEE_OTHER);
+        }
+        
+        $service->setStatus(true);
+        $entityManager->flush();
 
+        return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);
+    }
+    
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Services $service, EntityManagerInterface $entityManager): Response
     {
@@ -77,7 +110,14 @@ class ServicesController extends AbstractController
             $entityManager->remove($service);
             $entityManager->flush();
         }
-
+        
         return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
+    public function show(Services $service): Response
+    {
+        return $this->render('services/show.html.twig', [
+            'service' => $service,
+        ]);
     }
 }

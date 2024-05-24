@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Services{% endblock %}
+{% block title %}Service{% endblock %}
 
 {% block body %}
     <h1>Service</h1>
@@ -31,6 +31,9 @@
                 <th>Dernière modification</th>
                 <td>{{ service.lastUpdate ? service.lastUpdate|date('d-m-Y') : '' }}</td>
             </tr>
+            <tr>
+                <th>Archivé</th>
+                <td>{{ service.status }}</td>
         </tbody>
     </table>
 

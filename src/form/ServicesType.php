@@ -6,6 +6,9 @@ use App\Entity\Services;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class ServicesType extends AbstractType
 {
@@ -26,17 +29,14 @@ class ServicesType extends AbstractType
                     new NotBlank(['message' => 'La famille est requise.']),
                 ],
             ])
-            ->add('selling_price', IntegerType::class, [
-                'label' => 'Prix de vente',
-                ],
-            ])
             ->add('purchase_price', IntegerType::class, [
                 'label' => 'Prix d\'achat',
-                ],
+            ])
+            ->add('selling_price', IntegerType::class, [
+                'label' => 'Prix de vente',
             ])
             ->add('tax', IntegerType::class, [
                 'label' => 'TVA',
-                ],
             ])
         ;
     }

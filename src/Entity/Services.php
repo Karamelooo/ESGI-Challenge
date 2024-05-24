@@ -17,21 +17,30 @@ class Services
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    // TODO: Change category (string) to category_id (int) & update the setter and getter
     #[ORM\Column(length: 255)]
-    private ?string $category = null;
-
+    private ?int $category = null;
+    
+    #[ORM\Column(nullable: true)]
+    private ?int $purchase_price = null;
+    
     #[ORM\Column(nullable: true)]
     private ?int $selling_price = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $purchase_price = null;
-
+    // TODO: Change tax (int) to tax_id (int) & update the setter and getter
     #[ORM\Column(nullable: true)]
     private ?int $tax = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $last_update = null;
 
+    #[ORM\Column]
+    private ?bool $status = null;
+
+    #[ORM\Column(type: Types::GUID)]
+    private ?string $service_number = null;
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +114,30 @@ class Services
     public function setLastUpdate(\DateTimeInterface $last_update): static
     {
         $this->last_update = $last_update;
+
+        return $this;
+    }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): static
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getServiceNumber(): ?string
+    {
+        return $this->service_number;
+    }
+
+    public function setServiceNumber(string $service_number): static
+    {
+        $this->service_number = $service_number;
 
         return $this;
     }

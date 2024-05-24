@@ -24,6 +24,8 @@ class AppFixtures extends Fixture
             $service->setPurchasePrice($purchasePrice[$i]);
             $service->setTax($tax[$i]);
             $service->setLastUpdate(new \DateTime());
+            $service->setStatus(false);
+            $service->setServiceNumber(uniqid());
             
             $manager->persist($service);
         }

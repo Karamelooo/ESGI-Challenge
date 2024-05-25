@@ -16,29 +16,27 @@ class Services
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
-
-    // TODO: Change category (string) to category_id (int) & update the setter and getter
-    #[ORM\Column(length: 255)]
-    private ?int $category = null;
-    
+   
     #[ORM\Column(nullable: true)]
     private ?int $purchase_price = null;
     
     #[ORM\Column(nullable: true)]
     private ?int $selling_price = null;
 
-    // TODO: Change tax (int) to tax_id (int) & update the setter and getter
-    #[ORM\Column(nullable: true)]
-    private ?int $tax = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $last_update = null;
+    private ?\DateTimeInterface $updated_at = null;
 
     #[ORM\Column]
     private ?bool $status = null;
 
     #[ORM\Column(type: Types::GUID)]
     private ?string $service_number = null;
+
+    #[ORM\ManyToOne(inversedBy: 'services')]
+    private ?Category $category = null;
+
+    #[ORM\ManyToOne(inversedBy: 'services')]
+    private ?Tax $tax = null;
 
     
     public function getId(): ?int
@@ -54,18 +52,6 @@ class Services
     public function setName(string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): static
-    {
-        $this->category = $category;
 
         return $this;
     }
@@ -94,26 +80,14 @@ class Services
         return $this;
     }
 
-    public function getTax(): ?int
-    {
-        return $this->tax;
-    }
-
-    public function setTax(?int $tax): static
-    {
-        $this->tax = $tax;
-
-        return $this;
-    }
-
     public function getLastUpdate(): ?\DateTimeInterface
     {
-        return $this->last_update;
+        return $this->updated_at;
     }
 
-    public function setLastUpdate(\DateTimeInterface $last_update): static
+    public function setLastUpdate(\DateTimeInterface $updated_at): static
     {
-        $this->last_update = $last_update;
+        $this->updated_at = $updated_at;
 
         return $this;
     }
@@ -138,6 +112,30 @@ class Services
     public function setServiceNumber(string $service_number): static
     {
         $this->service_number = $service_number;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getTax(): ?Tax
+    {
+        return $this->tax;
+    }
+
+    public function setTax(?Tax $tax): static
+    {
+        $this->tax = $tax;
 
         return $this;
     }

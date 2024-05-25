@@ -23,7 +23,7 @@ final class Version20240425112342 extends AbstractMigration
         $this->addSql('DROP SEQUENCE annonce_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE user_id_seq CASCADE');
         $this->addSql('CREATE SEQUENCE services_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE TABLE services (id INT NOT NULL, name VARCHAR(255) NOT NULL, category VARCHAR(255) NOT NULL, selling_price INT DEFAULT NULL, purchase_price INT DEFAULT NULL, tax INT DEFAULT NULL, last_update DATE NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE services (id INT NOT NULL, name VARCHAR(255) NOT NULL, category VARCHAR(255) NOT NULL, selling_price INT DEFAULT NULL, purchase_price INT DEFAULT NULL, tax INT DEFAULT NULL, updated_at DATE NOT NULL, PRIMARY KEY(id))');
         $this->addSql('ALTER TABLE annonce DROP CONSTRAINT fk_f65593e52f626dc3');
         $this->addSql('DROP TABLE "user"');
         $this->addSql('DROP TABLE annonce');

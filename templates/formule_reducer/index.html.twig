@@ -17,8 +17,8 @@
         <tbody>
         {% for formule_reducer in formule_reducers %}
             <tr>
-                <td>{{ formule_reducer.startDate ? formule_reducer.startDate|date('Y-m-d') : '' }}</td>
-                <td>{{ formule_reducer.endDate ? formule_reducer.endDate|date('Y-m-d') : '' }}</td>
+                <td>{{ formule_reducer.startDate ? formule_reducer.startDate|date('d-m-Y') : '' }}</td>
+                <td>{{ formule_reducer.endDate ? formule_reducer.endDate|date('d-m-Y') : '' }}</td>
                 <td>{{ formule_reducer.value }}</td>
                 <td>
                     <a href="{{ path('app_formule_reducer_show', {'id': formule_reducer.id}) }}">Voir</a>

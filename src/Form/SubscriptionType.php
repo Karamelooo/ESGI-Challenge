@@ -41,7 +41,7 @@ class SubscriptionType extends AbstractType
             ])
             ->add('compagny_subcription', EntityType::class, [
                 'class' => Compagny::class,
-                'choice_label' => 'name', // Ajustez selon le nom de votre champ
+                'choice_label' => 'name',
                 'label' => 'Entreprise correspondante',
                 'required' => true,
                 'constraints' => [

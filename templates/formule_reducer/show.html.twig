@@ -9,11 +9,11 @@
         <tbody>
             <tr>
                 <th>Date de début</th>
-                <td>{{ formule_reducer.startDate ? formule_reducer.startDate|date('Y-m-d') : '' }}</td>
+                <td>{{ formule_reducer.startDate ? formule_reducer.startDate|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Date de fin</th>
-                <td>{{ formule_reducer.endDate ? formule_reducer.endDate|date('Y-m-d') : '' }}</td>
+                <td>{{ formule_reducer.endDate ? formule_reducer.endDate|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Valeur</th>

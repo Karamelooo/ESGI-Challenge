@@ -15,7 +15,7 @@
                   <th>Prix d'achat</th>
                   <th>Taxes</th>
                   <th>Dernière modification</th>
-                  <th>actions</th>
+                  <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                             <td>
                                 <a href="{{ path('app_services_show', {'id': service.id}) }}">Voir</a>
                                 <a href="{{ path('app_services_edit', {'id': service.id}) }}">Modifier</a>
-                                <a href="{{ path('app_services_change_status', {'id': service.id}) }}">archiver</a>
+                                <a href="{{ path('app_services_change_status', {'id': service.id}) }}">Archiver</a>
                             </td>
                         </tr>
                     {% endblock %}
@@ -46,5 +46,8 @@
         </table>
 
         <a href="{{ path('app_services_new') }}">Nouveau</a>
+        <a href="{{ path('app_services_archived') }}">Archivés</a>
+        <a href="{{ path('app_tax_index') }}">Taxes</a>
+        <a href="{{ path('app_category_index') }}">Familles</a>
     </div>
 {% endblock %}

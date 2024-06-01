@@ -45,6 +45,11 @@ class Tax
 
         return $this;
     }
+    
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 
     public function getPercent(): ?int
     {

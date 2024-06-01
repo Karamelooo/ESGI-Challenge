@@ -3,12 +3,15 @@
 namespace App\Form;
 
 use App\Entity\Services;
+use App\Entity\Category;
+use App\Entity\Tax;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ServicesType extends AbstractType
 {
@@ -22,12 +25,11 @@ class ServicesType extends AbstractType
                     new NotBlank(['message' => 'Le nom est requis.']),
                 ],
             ])
-            ->add('category', TextType::class, [
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
                 'label' => 'Famille',
                 'required' => true,
-                'constraints' => [
-                    new NotBlank(['message' => 'La famille est requise.']),
-                ],
             ])
             ->add('purchase_price', IntegerType::class, [
                 'label' => 'Prix d\'achat',
@@ -35,7 +37,9 @@ class ServicesType extends AbstractType
             ->add('selling_price', IntegerType::class, [
                 'label' => 'Prix de vente',
             ])
-            ->add('tax', IntegerType::class, [
+            ->add('tax', EntityType::class, [
+                'class' => Tax::class,
+                'choice_label' => 'percent',
                 'label' => 'TVA',
             ])
         ;

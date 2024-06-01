@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\ServicesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Ramsey\Uuid\Uuid;
 #[ORM\Entity(repositoryClass: ServicesRepository::class)]
 class Services
 {
@@ -29,7 +29,7 @@ class Services
     #[ORM\Column]
     private ?bool $status = null;
 
-    #[ORM\Column(type: Types::GUID)]
+    #[ORM\Column(type: Types::GUID, unique: true)]
     private ?string $service_number = null;
 
     #[ORM\ManyToOne(inversedBy: 'services')]
@@ -38,6 +38,10 @@ class Services
     #[ORM\ManyToOne(inversedBy: 'services')]
     private ?Tax $tax = null;
 
+    public function __construct()
+    {
+        $this->service_number = Uuid::uuid4()->toString();
+    }
     
     public function getId(): ?int
     {

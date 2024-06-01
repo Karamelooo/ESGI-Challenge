@@ -36,22 +36,22 @@ class ServicesController extends AbstractController
         $service = new Services();
         $form = $this->createForm(ServicesType::class, $service);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $service->setStatus(false);
             $service->setLastUpdate(new \DateTime());
             $entityManager->persist($service);
             $entityManager->flush();
-
+            
             return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        
         return $this->render('services/new.html.twig', [
             'service' => $service,
             'form' => $form,
         ]);
     }
-
+    
     #[Route('/archived', name: 'archived', methods: ['GET'])]
     public function archived(ServicesRepository $servicesRepository): Response
     {
@@ -86,6 +86,13 @@ class ServicesController extends AbstractController
         ]);
     }
     
+    #[Route('/{id}/show', name: 'show', methods: ['GET'])]
+    public function show(Services $service): Response
+    {
+        return $this->render('services/show.html.twig', [
+            'service' => $service,
+        ]);
+    }
     
     #[Route('/{id}/archive', name: 'change_status', methods: ['GET', 'POST'])]
     public function editStatus(Request $request, Services $service, EntityManagerInterface $entityManager): Response
@@ -99,7 +106,7 @@ class ServicesController extends AbstractController
         
         $service->setStatus(true);
         $entityManager->flush();
-
+        
         return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);
     }
     
@@ -113,11 +120,5 @@ class ServicesController extends AbstractController
         
         return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);
     }
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
-    public function show(Services $service): Response
-    {
-        return $this->render('services/show.html.twig', [
-            'service' => $service,
-        ]);
-    }
+    
 }

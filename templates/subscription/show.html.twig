@@ -9,11 +9,11 @@
         <tbody>
             <tr>
                 <th>Date de début</th>
-                <td>{{ subscription.startDate ? subscription.startDate|date('Y-m-d') : '' }}</td>
+                <td>{{ subscription.startDate ? subscription.startDate|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Date de fin</th>
-                <td>{{ subscription.endDate ? subscription.endDate|date('Y-m-d') : '' }}</td>
+                <td>{{ subscription.endDate ? subscription.endDate|date('d-m-Y') : '' }}</td>
             </tr>
         </tbody>
     </table>

@@ -16,9 +16,8 @@
         <tbody>
         {% for subscription in subscriptions %}
             <tr>
-                <td>{{ subscription.id }}</td>
-                <td>{{ subscription.startDate ? subscription.startDate|date('Y-m-d') : '' }}</td>
-                <td>{{ subscription.endDate ? subscription.endDate|date('Y-m-d') : '' }}</td>
+                <td>{{ subscription.startDate ? subscription.startDate|date('d-m-Y') : '' }}</td>
+                <td>{{ subscription.endDate ? subscription.endDate|date('d-m-Y') : '' }}</td>
                 <td>
                     <a href="{{ path('app_subscription_show', {'id': subscription.id}) }}">Voir</a>
                     <a href="{{ path('app_subscription_edit', {'id': subscription.id}) }}">Modifier</a>

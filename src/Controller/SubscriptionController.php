@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Compagny;
 use App\Entity\Subscription;
 use App\Form\SubscriptionType;
 use App\Repository\SubscriptionRepository;
@@ -26,7 +27,12 @@ class SubscriptionController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $subscription = new Subscription();
-        $form = $this->createForm(SubscriptionType::class, $subscription);
+
+        // Récupérer les entreprises
+        $entreprises = $entityManager->getRepository(Compagny::class)->findAll();
+
+        // Créer le formulaire avec les entreprises en option
+        $form = $this->createForm(SubscriptionType::class, $subscription, ['entreprises' => $entreprises]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -38,7 +44,7 @@ class SubscriptionController extends AbstractController
 
         return $this->render('subscription/new.html.twig', [
             'subscription' => $subscription,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

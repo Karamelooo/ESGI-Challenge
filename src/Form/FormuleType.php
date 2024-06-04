@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Formule;
+use App\Entity\FormuleReducer;
+use App\Entity\Subscription;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -15,6 +18,21 @@ class FormuleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+        $subscriptions = $options['subscriptions'];
+
+        $choices = [];
+        foreach ($subscriptions as $subscription) {
+            $choices[$subscription->getName()] = $subscription->getId();
+        }
+
+        $formulesReductions = $options['formulesReductions'];
+
+        $choices = [];
+        foreach ($formulesReductions as $formuleReduction) {
+            $choices[$formulesReductions->getName()] = $formuleReduction->getId();
+        }
+
         $builder
             ->add('price', NumberType::class,[
                 'label' => 'Prix',
@@ -30,19 +48,23 @@ class FormuleType extends AbstractType
                     new NotBlank(['message' => 'Le nom est requis.']),
                 ]
             ])
-            ->add('subscription', ChoiceType::class,[
-                'label' => 'Abonnement',
+            ->add('subscription', EntityType::class, [
+                'class' => Subscription::class,
+                'choice_label' => 'compagny_subcription',
+                'label' => 'Abonnement correspondant',
                 'required' => true,
                 'constraints' => [
-                    new NotBlank(['message' => 'L\'abonnement est requis.']),
-                ]
+                    new NotBlank(['message' => 'La sélection de l\'abonnement est requis.']),
+                ],
             ])
-            ->add('formuleReducer', ChoiceType::class,[
+            ->add('formuleReducer', EntityType::class, [
+                'class' => FormuleReducer::class,
+                'choice_label' => 'value',
                 'label' => 'Formule de réduction',
                 'required' => true,
                 'constraints' => [
-                    new NotBlank(['message' => 'La formule de réduction est requise.']),
-                ]
+                    new NotBlank(['message' => 'La formule de réduction est requise..']),
+                ],
             ])
         ;
     }
@@ -51,6 +73,8 @@ class FormuleType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Formule::class,
+            'subscriptions' => [],
+            'formulesReductions' => [],
         ]);
     }
 }

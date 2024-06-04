@@ -21,7 +21,7 @@ class SubscriptionType extends AbstractType
 
         $choices = [];
         foreach ($entreprises as $entreprise) {
-            $choices[$entreprise->getName()] = $entreprise->getId(); // Ajustez selon les méthodes de votre entité Entreprise
+            $choices[$entreprise->getName()] = $entreprise->getId();
         }
 
         $builder

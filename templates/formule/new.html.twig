@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle formule{% endblock %}
+
+{% block body %}
+    <h1>Nouvelle formule</h1>
+
+    {{ include('formule/_form.html.twig') }}
+
+    <a href="{{ path('app_formule_index') }}">Retour à la liste</a>
+{% endblock %}

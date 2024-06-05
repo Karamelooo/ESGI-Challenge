@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formules{% endblock %}
+
+{% block body %}
+    <h1>Formules</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Prix</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formule in formules %}
+            <tr>
+                <td>{{ formule.price }}</td>
+                <td>{{ formule.name }}</td>
+                <td>
+                    <a href="{{ path('app_formule_show', {'id': formule.id}) }}">Voir</a>
+                    <a href="{{ path('app_formule_edit', {'id': formule.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Pas de formules trouvées</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_formule_new') }}">Nouvelle</a>
+{% endblock %}

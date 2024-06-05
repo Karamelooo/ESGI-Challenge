@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formules de réductions{% endblock %}
+
+{% block body %}
+    <h1>Formules de réductions</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Valeur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formule_reducer in formule_reducers %}
+            <tr>
+                <td>{{ formule_reducer.startDate ? formule_reducer.startDate|date('d-m-Y') : '' }}</td>
+                <td>{{ formule_reducer.endDate ? formule_reducer.endDate|date('d-m-Y') : '' }}</td>
+                <td>{{ formule_reducer.value }}</td>
+                <td>
+                    <a href="{{ path('app_formule_reducer_show', {'id': formule_reducer.id}) }}">Voir</a>
+                    <a href="{{ path('app_formule_reducer_edit', {'id': formule_reducer.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Pas de formules de réductions trouvées</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_formule_reducer_new') }}">Nouvelle</a>
+{% endblock %}

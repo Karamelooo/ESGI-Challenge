@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Famille{% endblock %}
+
+{% block body %}
+    <h1>Nouvelle Famille</h1>
+
+    {{ include('category/_form.html.twig') }}
+
+    <a href="{{ path('app_category_index') }}">Retour à la liste</a>
+{% endblock %}

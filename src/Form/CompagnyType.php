@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Compagny;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -50,7 +51,7 @@ class CompagnyType extends AbstractType
                 'label' => 'Email',
                 'required' => false,
             ])
-            ->add('siret', TextType::class, [
+            ->add('siret', IntegerType::class, [
                 'label' => 'SIRET',
                 'required' => false,
             ])

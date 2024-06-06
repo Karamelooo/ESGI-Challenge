@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abonnement{% endblock %}
+
+{% block body %}
+    <h1>Abonnement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Date de début</th>
+                <td>{{ subscription.startDate ? subscription.startDate|date('d-m-Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date de fin</th>
+                <td>{{ subscription.endDate ? subscription.endDate|date('d-m-Y') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_subscription_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('app_subscription_edit', {'id': subscription.id}) }}">Modifier</a>
+
+    {{ include('subscription/_delete_form.html.twig') }}
+{% endblock %}

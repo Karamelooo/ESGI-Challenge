@@ -54,3 +54,9 @@ ehthumbs_vista.db
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+private.key
+pubkey.asc
+
+symfony.lock
+composer.lock

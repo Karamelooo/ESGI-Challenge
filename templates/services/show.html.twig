@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service{% endblock %}
+
+{% block body %}
+    <h1>Service</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ service.name }}</td>
+            </tr>
+            <tr>
+                <th>Famille</th>
+                <td>{{ service.category }}</td>
+            </tr>
+            <tr>
+                <th>Prix de vente</th>
+                <td>{{ service.sellingPrice }}</td>
+            </tr>
+            <tr>
+                <th>Prix d'achat</th>
+                <td>{{ service.purchasePrice }}</td>
+            </tr>
+            <tr>
+                <th>Taxes</th>
+                <td>{{ service.tax }}</td>
+            </tr>
+            <tr>
+                <th>Dernière modification</th>
+                <td>{{ service.lastUpdate ? service.lastUpdate|date('d-m-Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Archivé</th>
+                <td>{{ service.status }}</td>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_services_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('app_services_edit', {'id': service.id}) }}">Modifier</a>
+
+    {{ include('services/_delete_form.html.twig') }}
+{% endblock %}

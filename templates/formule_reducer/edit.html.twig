@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une formule de réduction{% endblock %}
+
+{% block body %}
+    <h1>Modifier une formule de réduction</h1>
+
+    {{ include('formule_reducer/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+    <a href="{{ path('app_formule_reducer_index') }}">Retour à la liste</a>
+
+    {{ include('formule_reducer/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Taxe{% endblock %}
+
+{% block body %}
+    <h1>Nouvelle Taxe</h1>
+
+    {{ include('tax/_form.html.twig') }}
+
+    <a href="{{ path('app_tax_index') }}">Retour à la liste</a>
+{% endblock %}

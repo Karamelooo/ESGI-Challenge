@@ -8,16 +8,18 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Date de début</th>
-                <th>Date de fin</th>
+                <th>Formule</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for subscription in subscriptions %}
             <tr>
-                <td>{{ subscription.startDate ? subscription.startDate|date('d-m-Y') : '' }}</td>
-                <td>{{ subscription.endDate ? subscription.endDate|date('d-m-Y') : '' }}</td>
+                <td>
+                    {% for formule in subscription.formules %}
+                        {{ formule.name }}
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('app_subscription_show', {'id': subscription.id}) }}">Voir</a>
                     <a href="{{ path('app_subscription_edit', {'id': subscription.id}) }}">Modifier</a>

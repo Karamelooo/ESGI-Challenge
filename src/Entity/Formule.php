@@ -19,11 +19,11 @@ class Formule
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'formule')]
+    #[ORM\ManyToOne(inversedBy: 'formules')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Subscription $subscription = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Formule')]
+    #[ORM\ManyToOne(inversedBy: 'formules')]
     #[ORM\JoinColumn(nullable: false)]
     private ?FormuleReducer $formuleReducer = null;
 

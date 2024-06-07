@@ -21,20 +21,17 @@ class SubscriptionRepository extends ServiceEntityRepository
         parent::__construct($registry, Subscription::class);
     }
 
-//    /**
-//     * @return Subscription[] Returns an array of Subscription objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Subscription[]
+     */
+    public function findAllSubscription(): array
+    {
+        return $this->createQueryBuilder('s')
+            ->innerJoin('s.formules', 'f')
+            ->addSelect('f')
+            ->getQuery()
+            ->getResult();
+    }
 
 //    public function findOneBySomeField($value): ?Subscription
 //    {

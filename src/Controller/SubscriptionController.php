@@ -19,7 +19,7 @@ class SubscriptionController extends AbstractController
     public function index(SubscriptionRepository $subscriptionRepository): Response
     {
         return $this->render('subscription/index.html.twig', [
-            'subscriptions' => $subscriptionRepository->findAll(),
+            'subscriptions' => $subscriptionRepository->findAllSubscription(),
         ]);
     }
 

@@ -17,7 +17,7 @@ class Subscription
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'subscriptions')]
-    private ?compagny $compagny_subcription = null;
+    private ?Compagny $compagny_subcription = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $start_date = null;
@@ -25,12 +25,12 @@ class Subscription
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end_date = null;
 
-    #[ORM\OneToMany(mappedBy: 'subscription', targetEntity: formule::class)]
-    private Collection $formule;
+    #[ORM\OneToMany(mappedBy: 'subscription', targetEntity: Formule::class)]
+    private Collection $formules;
 
     public function __construct()
     {
-        $this->formule = new ArrayCollection();
+        $this->formules = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -38,12 +38,12 @@ class Subscription
         return $this->id;
     }
 
-    public function getCompagnySubcription(): ?compagny
+    public function getCompagnySubcription(): ?Compagny
     {
         return $this->compagny_subcription;
     }
 
-    public function setCompagnySubcription(?compagny $compagny_subcription): static
+    public function setCompagnySubcription(?Compagny $compagny_subcription): static
     {
         $this->compagny_subcription = $compagny_subcription;
 
@@ -75,26 +75,26 @@ class Subscription
     }
 
     /**
-     * @return Collection<int, formule>
+     * @return Collection<int, Formule>
      */
-    public function getFormule(): Collection
+    public function getFormules(): Collection
     {
-        return $this->formule;
+        return $this->formules;
     }
 
-    public function addFormule(formule $formule): static
+    public function addFormule(Formule $formule): static
     {
-        if (!$this->formule->contains($formule)) {
-            $this->formule->add($formule);
+        if (!$this->formules->contains($formule)) {
+            $this->formules->add($formule);
             $formule->setSubscription($this);
         }
 
         return $this;
     }
 
-    public function removeFormule(formule $formule): static
+    public function removeFormule(Formule $formule): static
     {
-        if ($this->formule->removeElement($formule)) {
+        if ($this->formules->removeElement($formule)) {
             // set the owning side to null (unless already changed)
             if ($formule->getSubscription() === $this) {
                 $formule->setSubscription(null);

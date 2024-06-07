@@ -57,3 +57,6 @@ yarn-error.log
 
 private.key
 pubkey.asc
+
+symfony.lock
+composer.lock

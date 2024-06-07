@@ -2,33 +2,52 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Client;
+use App\Entity\Compagny;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use App\Entity\Services;
+use Faker\Factory;
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $name = ['Company 1', 'Company 2', 'Company 3', 'Company 4', 'Company 5', 'Company 6', 'Company 7', 'Company 8', 'Company 9', 'Company 10'];
-        $category = ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5', 'Category 6', 'Category 7', 'Category 8', 'Category 9', 'Category 10'];
-        $sellingPrice = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-        $purchasePrice = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500];
-        $tax = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        $faker = Factory::create('fr_FR');
 
-        for ($i=0; $i < count($name); $i++) {
-            $service = new Services();
-            $service->setName($name[$i]);
-            $service->setCategory($category[$i]);
-            $service->setSellingPrice($sellingPrice[$i]);
-            $service->setPurchasePrice($purchasePrice[$i]);
-            $service->setTax($tax[$i]);
-            $service->setLastUpdate(new \DateTime());
-            $service->setStatus(false);
-            $service->setServiceNumber(uniqid());
-            
-            $manager->persist($service);
+        for ($i = 0; $i < 100; $i++) {
+            $client = new Client();
+            $client->setCompany($faker->company);
+            $client->setFirstname($faker->firstName);
+            $client->setLastname($faker->lastName);
+            $client->setEmail($faker->email);
+            $client->setPhone($faker->phoneNumber);
+            $client->setAddress($faker->address);
+            $client->setCity($faker->city);
+            $client->setZipCode($faker->postcode);
+            $client->setSiret($faker->randomNumber(9, true));
+            $client->setNaf($faker->regexify('[A-Z]{2}[0-9]{3}'));
+
+            $manager->persist($client);
         }
+
+        for ($i = 0; $i < 100; $i++) {
+            $compagny = new Compagny();
+            $compagny->setName($faker->company);
+            $compagny->setLogoPath('public/uploads');
+            $compagny->setAdress($faker->address);
+            $compagny->setCity($faker->city);
+            $compagny->setZipCode($faker->postcode);
+            $compagny->setEmail($faker->email);
+            $compagny->setSiret($faker->randomNumber(9, true));
+            $compagny->setNaf($faker->regexify('[A-Z]{2}[0-9]{3}'));
+            $compagny->setWebsite($faker->url);
+            $compagny->setPhone($faker->phoneNumber);
+            $compagny->setCapital($faker->randomNumber(6));
+            $compagny->setCreatedAt($faker->dateTimeBetween('-2 years', 'now'));
+
+            $manager->persist($compagny);
+        }
+
         $manager->flush();
     }
 }

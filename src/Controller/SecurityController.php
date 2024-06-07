@@ -36,7 +36,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/user/delete/{id}', name: 'app_user.delete', methods: ['DELETE'])]
-    public function delete(User $user, EntityManagerInterface $em)
+    public function delete(User $user, EntityManagerInterface $em): Response
     {
         $em->remove($user);
         $em->flush();
@@ -45,12 +45,29 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/user/edit/{id}', name: 'app_user.edit', methods: ['GET', 'POST'])]
-    public function edit(User $user)
+    public function edit(User $user): Response
     {
         $form = $this->createForm(RegistrationFormType::class, $user);
         return $this->render('security/edit.html.twig', [
             'user' => $user,
             'form' => $form
+        ]);
+    }
+
+    #[Route(path: '/user/{id}', name: 'app_user.show', methods: ['GET', 'POST'])]
+    public function show(User $user): Response
+    {
+        return $this->render('security/show.html.twig', [
+            'user' => $user
+        ]);
+    }
+
+    #[Route(path: '/users', name: 'app_user.show_all')]
+    public function show_all(UserRepository $repository): Response
+    {
+        $users = $repository->findAll();
+        return $this->render('security/show_all.html.twig', [
+            'users' => $users
         ]);
     }
 }

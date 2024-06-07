@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Utilisateur : " ~ user.firstname %}
+
+{% block body %}
+
+    <a href="{{ path('app_user.show_all') }}"><--- Retour</a>
+
+    <h1>Fiche Utilisateur (admin)</h1>
+
+    <br>
+
+    <div>
+        <p>Prénom : {{ user.firstname }}</p>
+        <p>Nom : {{ user.lastname }}</p>
+        <p>Email : {{ user.Email }}</p>
+    </div>
+
+    <div>
+        <a href="{{ path('app_user.edit', {id: user.id }) }}" class="text-green-600">Editer</a>
+        <form action="{{ path('app_user.delete', {id: user.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="text-red-400">Supprimer</button>
+        </form>
+    </div>
+
+{% endblock %}

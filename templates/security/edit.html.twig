@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Utilisateur : " ~ user.firstname %}
+
+{% block body %}
+
+    <h1>Utilisateur {{ user.firstname ~ " " ~ user.lastname}}
+
+    {{ form(form) }}
+
+{% endblock %}

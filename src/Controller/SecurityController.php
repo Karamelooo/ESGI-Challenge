@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\EditUserFormType;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -47,7 +48,7 @@ class SecurityController extends AbstractController
     #[Route(path: '/user/edit/{id}', name: 'app_user.edit', methods: ['GET', 'POST'])]
     public function edit(User $user): Response
     {
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(EditUserFormType::class, $user);
         return $this->render('security/edit.html.twig', [
             'user' => $user,
             'form' => $form

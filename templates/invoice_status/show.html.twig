@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}InvoiceStatus{% endblock %}
+
+{% block body %}
+    <h1>InvoiceStatus</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Status</th>
+                <td>{{ invoice_status.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_invoice_status_index') }}">back to list</a>
+
+    <a href="{{ path('app_invoice_status_edit', {'id': invoice_status.id}) }}">edit</a>
+
+    {{ include('invoice_status/_delete_form.html.twig') }}
+{% endblock %}

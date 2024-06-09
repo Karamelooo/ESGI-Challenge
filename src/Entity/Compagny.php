@@ -55,6 +55,9 @@ class Compagny
     #[ORM\OneToMany(mappedBy: 'compagny_subcription', targetEntity: Subscription::class)]
     private Collection $subscriptions;
 
+    #[ORM\ManyToOne(inversedBy: 'company')]
+    private ?Invoices $invoices = null;
+
     public function __construct()
     {
         $this->subscriptions = new ArrayCollection();
@@ -240,6 +243,18 @@ class Compagny
                 $subscription->setCompagnySubcription(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getInvoices(): ?Invoices
+    {
+        return $this->invoices;
+    }
+
+    public function setInvoices(?Invoices $invoices): static
+    {
+        $this->invoices = $invoices;
 
         return $this;
     }

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}InvoiceStatus index{% endblock %}
+
+{% block body %}
+    <h1>InvoiceStatus index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for invoice_status in invoice_statuses %}
+            <tr>
+                <td>{{ invoice_status.status }}</td>
+                <td>
+                    <a href="{{ path('app_invoice_status_show', {'id': invoice_status.id}) }}">show</a>
+                    <a href="{{ path('app_invoice_status_edit', {'id': invoice_status.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_invoice_status_new') }}">Create new</a>
+{% endblock %}

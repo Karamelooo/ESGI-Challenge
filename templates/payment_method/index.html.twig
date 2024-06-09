@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des méthodes de paiement{% endblock %}
+
+{% block body %}
+    <h1>Liste des méthodes de paiement</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Méthode de paiement</th>
+                <th>Montant du paiement</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for payment_method in payment_methods %}
+            <tr>
+                <td>{{ payment_method.method }}</td>
+                <td>{{ payment_method.payment ? payment_method.payment.amount : 'N/A' }}</td>
+                <td>
+                    <a href="{{ path('app_payment_method_show', {'id': payment_method.id}) }}">Voir</a>
+                    <a href="{{ path('app_payment_method_edit', {'id': payment_method.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucune méthode de paiement trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_payment_method_new') }}">Nouvelle</a>
+{% endblock %}

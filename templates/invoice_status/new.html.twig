@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New InvoiceStatus{% endblock %}
+
+{% block body %}
+    <h1>Create new InvoiceStatus</h1>
+
+    {{ include('invoice_status/_form.html.twig') }}
+
+    <a href="{{ path('app_invoice_status_index') }}">back to list</a>
+{% endblock %}

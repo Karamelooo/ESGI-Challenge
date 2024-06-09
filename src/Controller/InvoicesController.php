@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Invoices;
+<<<<<<< HEAD
 use App\Entity\User;
 use App\Entity\InvoicesNumber;
+=======
+>>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
 use App\Form\InvoicesType;
 use App\Repository\InvoicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,12 +15,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+<<<<<<< HEAD
 use Symfony\Component\Security\Core\Security;
 
+=======
+>>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
 
 #[Route('/invoices')]
 class InvoicesController extends AbstractController
 {
+<<<<<<< HEAD
     private Security $security;
 
     public function __construct(Security $security)
@@ -25,6 +32,8 @@ class InvoicesController extends AbstractController
         $this->security = $security;
     }
 
+=======
+>>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
     #[Route('/', name: 'app_invoices_index', methods: ['GET'])]
     public function index(InvoicesRepository $invoicesRepository): Response
     {
@@ -36,6 +45,7 @@ class InvoicesController extends AbstractController
     #[Route('/new', name: 'app_invoices_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+<<<<<<< HEAD
         $user = $this->getUser(); // Use $this->getUser() directly instead of $this->security->getUser()
 
         $invoice = new Invoices();
@@ -44,10 +54,18 @@ class InvoicesController extends AbstractController
         $invoice->setCompany($user->getCompany()); // Verify this method is implemented correctly
         $invoice->setCreatedAt(new \DateTimeImmutable());
 
+=======
+        $invoice = new Invoices();
+>>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
         $form = $this->createForm(InvoicesType::class, $invoice);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+<<<<<<< HEAD
+=======
+            $invoice->setCompany($this->getUser()); //TODO: vérifier si ça fonctionne
+            $invoice->setInvoicesNumber();
+>>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
             $invoice->setUpdateAt(new \DateTime());
             $entityManager->persist($invoice);
             $entityManager->flush();
@@ -56,9 +74,14 @@ class InvoicesController extends AbstractController
         }
 
         return $this->render('invoices/new.html.twig', [
+<<<<<<< HEAD
             'form' => $form->createView(),
             'invoice' => $invoice,
             'client' => $user->getCompany()->getClients(),
+=======
+            'invoice' => $invoice,
+            'form' => $form,
+>>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
         ]);
     }
 

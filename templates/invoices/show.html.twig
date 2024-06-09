@@ -3,6 +3,7 @@
 {% block title %}Invoices{% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
 
     <div class="container mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-4 p-4 ">
     <!-- Header -->
@@ -83,6 +84,34 @@
         </div>
         {% include 'components/button.html.twig' with {'label': 'Modifier', 'onclick': 'path("app_invoices_edit", {"id": invoice.id})'} %}
     </div>
+=======
+    <h1>Invoices</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Invoices_number</th>
+                <td>{{ invoice.invoicesNumber }}</td>
+            </tr>
+            <tr>
+                <th>Last_payment_date</th>
+                <td>{{ invoice.lastPaymentDate ? invoice.lastPaymentDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Last_send_date</th>
+                <td>{{ invoice.lastSendDate ? invoice.lastSendDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Due_date</th>
+                <td>{{ invoice.dueDate ? invoice.dueDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Update_at</th>
+                <td>{{ invoice.updateAt ? invoice.updateAt|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+>>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
 
     <a href="{{ path('app_invoices_index') }}">back to list</a>
 

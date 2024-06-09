@@ -3,6 +3,7 @@
 {% block title %}New Invoices{% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
 <div class="container mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-4 p-4 ">
     {{ form_start(form) }}
     <!-- Header -->
@@ -81,4 +82,11 @@
     {% include 'components/button.html.twig' with {'icon': 'fa-regular fa-paper-plane','label': 'Envoyer'} %}
     {{ form_end(form) }}
 </div>
+=======
+    <h1>Create new Invoices</h1>
+
+    {{ include('invoices/_form.html.twig') }}
+
+    <a href="{{ path('app_invoices_index') }}">back to list</a>
+>>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
 {% endblock %}

@@ -12,9 +12,13 @@ class InvoicesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+<<<<<<< HEAD
             ->add('invoices_number')
             ->add('client')
             ->add('company')
+=======
+            // ->add('client')
+>>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
             ->add('due_date')
         ;
     }

@@ -1,11 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Simplifiez vos devis et facturations{% endblock %}
+{% block title %}WorkWise | Simplifiez vos devis et facturations{% endblock %}
 
 {% block body %}
-    <header class="text-center py-12 bg-blue-600 text-white">
+    <header class="text-center bg-lime-300 text-black">
+        <nav class="text-white py-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="/" class="font-bold text-xl">WorkWise</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="/login" class="hover:underline">Espace client</a>
+                </div>
+            </div>
+        </nav>
         <h1 class="text-4xl font-bold">Simplifiez vos devis et facturations</h1>
-        <h4 class="text-xl mt-4">La solution complète pour les développeurs freelance</h4>
+        <h4 class="text-xl mt-4 p-8">La solution complète pour les développeurs freelance</h4>
     </header>
 
     <main class="container mx-auto p-8">
@@ -86,7 +96,7 @@
         <section class="my-12 text-center">
             <h2 class="text-3xl font-bold">Prêt à simplifier votre gestion ?</h2>
             <p class="mt-4">Essayez notre solution gratuitement ou choisissez la version freemium pour profiter des fonctionnalités de base sans limite de temps.</p>
-            <a href="#" class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">Démarrer avec la version freemium</a>
+            <a href="#" class="mt-6 inline-block px-6 py-3 bg-lime-300 text-white rounded-lg shadow hover:bg-lime-400">Démarrer avec la version freemium</a>
         </section>
 
         <!-- Section 5 -->
@@ -109,19 +119,9 @@
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-onyx-800 text-white py-8">
         <div class="container mx-auto text-center">
-            <p>&copy; 2024 Simplifiez vos devis et facturations. Tous droits réservés.</p>
-            <div class="mt-4 space-x-4">
-                <a href="#" class="hover:underline">À propos de nous</a>
-                <a href="#" class="hover:underline">Politique de confidentialité</a>
-                <a href="#" class="hover:underline">Conditions d'utilisation</a>
-            </div>
-            <div class="mt-4">
-                <a href="#" class="inline-block mx-2"><img src="path/to/facebook-icon.png" alt="Facebook" class="w-6 h-6"></a>
-                <a href="#" class="inline-block mx-2"><img src="path/to/twitter-icon.png" alt="Twitter" class="w-6 h-6"></a>
-                <a href="#" class="inline-block mx-2"><img src="path/to/linkedin-icon.png" alt="LinkedIn" class="w-6 h-6"></a>
-            </div>
+            <p>&copy; 2024 WorkWise. Tous droits réservés.</p>
         </div>
     </footer>
 {% endblock %}

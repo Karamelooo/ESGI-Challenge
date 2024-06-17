@@ -1,14 +1,127 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Simplifiez vos devis et facturations{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-<div class="m-4">
-e
-    <h1>Hello {{ controller_name }}! ✅</h1>
-</div>
+    <header class="text-center py-12 bg-blue-600 text-white">
+        <h1 class="text-4xl font-bold">Simplifiez vos devis et facturations</h1>
+        <h4 class="text-xl mt-4">La solution complète pour les développeurs freelance</h4>
+    </header>
+
+    <main class="container mx-auto p-8">
+        <!-- Section 1 -->
+        <section class="my-12">
+            <h2 class="text-3xl font-bold text-center">Pourquoi choisir notre solution ?</h2>
+            <div class="mt-8 space-y-4">
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Automatisation des tâches</h3>
+                    <p>Créez et envoyez des devis et factures en quelques clics.</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Suivi des paiements</h3>
+                    <p>Gardez un œil sur vos paiements et relancez vos clients automatiquement.</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Personnalisation</h3>
+                    <p>Adaptez vos documents à l'image de votre marque avec des modèles personnalisables.</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Conformité fiscale</h3>
+                    <p>Restez en règle avec la législation française en vigueur.</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Sécurité</h3>
+                    <p>Vos données sont protégées par des mesures de sécurité de pointe.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section class="my-12">
+            <h2 class="text-3xl font-bold text-center">Tout ce dont vous avez besoin en un seul endroit</h2>
+            <div class="mt-8 space-y-4">
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Création de devis et factures</h3>
+                    <p>Interface simple et rapide pour générer vos documents.</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Gestion de clients</h3>
+                    <p>Base de données client intégrée pour un suivi optimal.</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Rapports financiers</h3>
+                    <p>Analysez vos revenus et dépenses grâce à des rapports détaillés.</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Suivi des paiements</h3>
+                    <p>Notification des paiements reçus et gestion des relances automatiques.</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Support client dédié</h3>
+                    <p>Une équipe à votre écoute pour vous aider en cas de besoin.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section class="my-12">
+            <h2 class="text-3xl font-bold text-center">Ce que disent nos utilisateurs</h2>
+            <div class="mt-8 space-y-4">
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <p class="italic">"Un gain de temps précieux, je peux maintenant me concentrer sur le développement sans me soucier de la paperasse."</p>
+                    <p class="text-right font-semibold">- Marie, Développeuse Front-End</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <p class="italic">"L'outil est très intuitif et m'aide à suivre facilement mes projets et mes revenus."</p>
+                    <p class="text-right font-semibold">- Thomas, Développeur Full Stack</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <p class="italic">"La personnalisation des devis et factures me permet de donner une image professionnelle à mes clients."</p>
+                    <p class="text-right font-semibold">- Lucie, Développeuse Mobile</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section class="my-12 text-center">
+            <h2 class="text-3xl font-bold">Prêt à simplifier votre gestion ?</h2>
+            <p class="mt-4">Essayez notre solution gratuitement ou choisissez la version freemium pour profiter des fonctionnalités de base sans limite de temps.</p>
+            <a href="#" class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">Démarrer avec la version freemium</a>
+        </section>
+
+        <!-- Section 5 -->
+        <section class="my-12">
+            <h2 class="text-3xl font-bold text-center">Nous sommes là pour vous</h2>
+            <div class="mt-8 space-y-4">
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Support</h3>
+                    <p>Contactez notre équipe via chat ou email.</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Blog</h3>
+                    <p>Conseils et astuces pour les développeurs freelance.</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">FAQ</h3>
+                    <p>Toutes les réponses à vos questions.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Simplifiez vos devis et facturations. Tous droits réservés.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="hover:underline">À propos de nous</a>
+                <a href="#" class="hover:underline">Politique de confidentialité</a>
+                <a href="#" class="hover:underline">Conditions d'utilisation</a>
+            </div>
+            <div class="mt-4">
+                <a href="#" class="inline-block mx-2"><img src="path/to/facebook-icon.png" alt="Facebook" class="w-6 h-6"></a>
+                <a href="#" class="inline-block mx-2"><img src="path/to/twitter-icon.png" alt="Twitter" class="w-6 h-6"></a>
+                <a href="#" class="inline-block mx-2"><img src="path/to/linkedin-icon.png" alt="LinkedIn" class="w-6 h-6"></a>
+            </div>
+        </div>
+    </footer>
 {% endblock %}

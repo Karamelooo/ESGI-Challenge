@@ -45,6 +45,9 @@ class Invoices
     private ?InvoicesNumber $invoices_number = null;    // Numéro de invoice (NE DOIT PAS CHANGER)
                                                         // TODO: Initial du Status + invoicesNumber = Numéro de brouillon/devis/facture
 
+    #[ORM\ManyToOne(inversedBy: 'invoices')]
+    private ?Client $client = null;    
+
     public function __construct()
     {
         $this->company = new ArrayCollection(); // TODO: ADD Company by id
@@ -190,6 +193,18 @@ class Invoices
             $invoices_number->setInvoices(1);
         }
         $this->invoices_number = $invoices_number;
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): static
+    {
+        $this->client = $client;
+
         return $this;
     }
 

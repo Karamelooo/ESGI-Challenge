@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création nouvelle méthode de paiement{% endblock %}
+
+{% block body %}
+    <h1>Création nouvelle méthode de paiement</h1>
+
+    {{ include('payment_method/_form.html.twig') }}
+
+    <a href="{{ path('app_payment_method_index') }}">Retour à la liste</a>
+{% endblock %}

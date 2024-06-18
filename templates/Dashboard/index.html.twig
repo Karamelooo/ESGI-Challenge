@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WorkWise</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body class="h-screen flex">
+    <div class="flex flex-col w-64 bg-green-100 p-4">
+        <div class="text-2xl font-bold mb-4">WorkWise</div>
+        <ul class="flex-grow space-y-2 mb-auto">
+            <li class="p-2 cursor-pointer">Tableau de bord</li>
+            <li class="p-2 bg-green-300 rounded cursor-pointer">Devis et facturation</li>
+            <li class="p-2 cursor-pointer">Services</li>
+            <li class="p-2 cursor-pointer">Paiements</li>
+            <li class="p-2 cursor-pointer">Clients</li>
+        </ul>
+        <div class="flex items-center mt-auto">
+            <img src="avatar.png" alt="Image avatar" class="w-12 h-12 rounded-full mr-2">
+            <div>
+                Arthur Valentim<br>
+                <a href="mailto:admin@gmail.com" class="text-sm text-gray-600">admin@gmail.com</a>
+            </div>
+        </div>
+    </div>
+    <div class="flex-grow p-6">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-2">
+                <span class="px-3 py-1 bg-yellow-500 text-white rounded-full">1 En cours</span>
+                <span class="px-3 py-1 bg-yellow-200 text-black rounded-full">1 Envoyé</span>
+                <span class="px-3 py-1 bg-green-500 text-white rounded-full">1 Validé</span>
+            </div>
+            <button class="bg-green-500 text-white px-4 py-2 rounded">+ Nouveau</button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+                <thead>
+                <tr>
+                    <th class="border-b p-4 text-left bg-gray-100">N°</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Client</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Catégorie</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Service</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Action</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Statut</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">1</td>
+                    <td class="border-b p-4">Hugo Petit</td>
+                    <td class="border-b p-4">Création</td>
+                    <td class="border-b p-4">Maquettes</td>
+                    <td class="border-b p-4">Refonte</td>
+                    <td class="border-b p-4"><span class="px-2 py-1 bg-yellow-500 text-white rounded-full">En cours</span></td>
+                </tr>
+                <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">2</td>
+                    <td class="border-b p-4">Léo Poumailloux</td>
+                    <td class="border-b p-4">Maintenance</td>
+                    <td class="border-b p-4">Machines</td>
+                    <td class="border-b p-4">Révision annuelle</td>
+                    <td class="border-b p-4"><span class="px-2 py-1 bg-green-500 text-white rounded-full">Validé</span></td>
+                </tr>
+                <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">3</td>
+                    <td class="border-b p-4">Arthur Valentim</td>
+                    <td class="border-b p-4">Dépannage</td>
+                    <td class="border-b p-4">Voiture</td>
+                    <td class="border-b p-4">Contrôle technique</td>
+                    <td class="border-b p-4"><span class="px-2 py-1 bg-yellow-200 text-black rounded-full">Envoyé</span></td>
+                </tr>
+                <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">4</td>
+                    <td class="border-b p-4">Léo Guirado</td>
+                    <td class="border-b p-4">Contrôle</td>
+                    <td class="border-b p-4">Camion</td>
+                    <td class="border-b p-4">Réparation</td>
+                    <td class="border-b p-4"><span class="px-2 py-1 bg-yellow-500 text-white rounded-full">En cours</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </body>
+</html>

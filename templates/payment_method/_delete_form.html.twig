@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_payment_method_delete', {'id': payment_method.id}) }}" onsubmit="return confirm('Êtes-vous certain de voulour cette méthode de paiement ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ payment_method.id) }}">
+    <button class="btn">Supprimer</button>
+</form>

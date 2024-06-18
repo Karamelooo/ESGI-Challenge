@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des paiement{% endblock %}
+
+{% block body %}
+    <h1>Liste des paiement</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Montant</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for payment in payments %}
+            <tr>
+                <td>{{ payment.amount }}</td>
+                <td>{{ payment.date ? payment.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_payment_show', {'id': payment.id}) }}">Voir</a>
+                    <a href="{{ path('app_payment_edit', {'id': payment.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun paiement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_payment_new') }}">Nouveau</a>
+{% endblock %}

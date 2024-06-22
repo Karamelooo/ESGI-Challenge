@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Invoices;
 use App\Entity\User;
+use App\Entity\InvoicesNumber;
 use App\Form\InvoicesType;
 use App\Repository\InvoicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,7 +18,7 @@ use Symfony\Component\Security\Core\Security;
 #[Route('/invoices')]
 class InvoicesController extends AbstractController
 {
-    private $security;
+    private Security $security;
 
     public function __construct(Security $security)
     {
@@ -35,15 +36,18 @@ class InvoicesController extends AbstractController
     #[Route('/new', name: 'app_invoices_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $user = $this->security->getUser();
+        $user = $this->getUser(); // Use $this->getUser() directly instead of $this->security->getUser()
 
         $invoice = new Invoices();
+
+        $invoice->setInvoicesNumber($entityManager);
+        $invoice->setCompany($user->getCompany()); // Verify this method is implemented correctly
+        $invoice->setCreatedAt(new \DateTimeImmutable());
+
         $form = $this->createForm(InvoicesType::class, $invoice);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $invoice->setCompany($user->getCompany()); //TODO: vérifier si ça fonctionne
-            $invoice->setInvoicesNumber();
             $invoice->setUpdateAt(new \DateTime());
             $entityManager->persist($invoice);
             $entityManager->flush();
@@ -52,8 +56,9 @@ class InvoicesController extends AbstractController
         }
 
         return $this->render('invoices/new.html.twig', [
+            'form' => $form->createView(),
             'invoice' => $invoice,
-            'form' => $form,
+            'client' => $user->getCompany()->getClients(),
         ]);
     }
 

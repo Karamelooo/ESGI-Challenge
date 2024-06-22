@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Compagny;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,6 +22,19 @@ class CompagnyRepository extends ServiceEntityRepository
         parent::__construct($registry, Compagny::class);
     }
 
+    /**
+     * @param User $user
+     * @return Compagny[]
+     */
+    public function findByUser(User $user)
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.users', 'u')
+            ->where('u.id = :user')
+            ->setParameter('user', $user->getId())
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Compagny[] Returns an array of Compagny objects
 //     */

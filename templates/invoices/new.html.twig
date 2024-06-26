@@ -3,9 +3,90 @@
 {% block title %}New Invoices{% endblock %}
 
 {% block body %}
-    <h1>Create new Invoices</h1>
+    <div class="container mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-4 p-4 ">
+    <!-- Header -->
+        <div class="flex justify-between items-center">
+            <!-- Informations de l'entreprise -->
+            <div class="px-4 py-2 bg-gray-50 border-t border-gray-200 flex-col">
+                <h2 class="text-2xl font-semibold">Logo</h2>
+                <img src="https://via.placeholder.com/150" alt="logo" class="mt-2">
+                <h2 class="text-lg font-semibold">Entreprise</h2>
+                <input type="text" placeholder="Nom de l'entreprise" class="mt-2 p-2 border rounded-md" value="company name">
+                <input type="text" placeholder="Adresse" class="mt-2 p-2 border rounded-md" value="company address">
+                <input type="text" placeholder="Téléphone" class="mt-2 p-2 border rounded-md" value="company phone">
+                <input type="text" placeholder="Email" class="mt-2 p-2 border rounded-md" value="company email">
+            </div>
+            <div class="flex-col"> 
+                <!-- Informations du devis -->
+                <div class="px-4 py-2 bg-gray-50 border-t border-gray-200">
+                    <h2 class="text-lg font-semibold">Devis</h2>
+                    <input type="text" placeholder="Numéro du devis" class="mt-2 p-2 border rounded-md" value="invoice number">
+                    <input type="text" placeholder="Date du devis" class="mt-2 p-2 border rounded-md" value="invoice date">
+                    <input type="text" placeholder="Date d'expiration" class="mt-2 p-2 border rounded-md" value="invoice expiration date">
+                </div>
+
+                <!-- Informations du client -->
+                <div class="px-4 py-2 bg-gray-50 border-t border-gray-200">
+                    <h2 class="text-lg font-semibold">Client</h2>
+                    <input type="text" placeholder="Nom du client" class="mt-2 p-2 border rounded-md" value="client name">
+                    <input type="text" placeholder="Adresse" class="mt-2 p-2 border rounded-md" value="client address">
+                    <input type="text" placeholder="Téléphone" class="mt-2 p-2 border rounded-md" value="client phone">
+                    <input type="text" placeholder="Email" class="mt-2 p-2 border rounded-md" value="client email">
+                </div>
+            </div>
+        </div>
+        
+        <!-- divider -->
+        <div colspan="4" class="py-2 border-b border-lime-500"></div>
+
+        <!-- Détails du devis -->
+        <div class="px-4 py-2 bg-gray-50 border-t border-gray-200">
+            <h2 class="text-lg font-semibold">Prestations du devis</h2>
+            <table class="min-w-full mt-4">
+                <thead>
+                    <tr>
+                        <th class="py-2 text-left text-sm text-gray-600">DESCRIPTION</th>
+                        <th class="py-2 text-left text-sm text-gray-600">QTÉ</th>
+                        <th class="py-2 text-left text-sm text-gray-600">PRIX U.</th>
+                        <th class="py-2 text-left text-sm text-gray-600">TOTAL HT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {# {% for order in invoice.orders %} #}
+                    <tr>
+                        <td class="py-2">blabla</td> <!-- order.description</td> -->
+                        <td class="py-2">59</td><!-- order.quantity</td> -->
+                        <td class="py-2">500</td><!-- order.unitPrice</td> -->
+                        <td class="py-2">{{59*500}}</td><!-- order.total</td> -->
+                    </tr>
+                    {# {% endfor %} #}
+                </tbody>
+            </table>
+        </div>
+        <div class="flex flex-row justify-between items-center">
+            <!-- Conditions de paiement -->
+            <div class="flex-col">
+                <div colspan="3" class="py-2 text-right font-semibold">Conditions de paiement</div>
+                <div class="py-2">Méthodes de paiement acceptées : Chèque, Virement bancaire, Carte bancaire</div>
+            </div>
+            <!-- Total -->
+            <div class="flex-col">
+                <div colspan="3" class="py-2 text-right font-semibold">Total</div>
+                <div class="py-2">invoice.total</div>
+            </div>
+        </div>
+        <!-- card "bon pour accord", date et signature -->
+        <div class="flex-row border-4 mt-6">
+            <div colspan="4" class="py-2 text-right">Pour le client</div>
+            <div colspan="4" class="py-2 text-right">Mention "Bon pour accord", date et signature</div>
+            <div colspan="4" class="py-2 text-right">../../....</div>
+        </div>
+        {% include 'components/button.html.twig' with {'icon': 'fa-regular fa-paper-plane','label': 'Envoyer', 'class': } %}
+    </div>
+
+    {# <h1>Create new Invoices</h1>
 
     {{ include('invoices/_form.html.twig') }}
 
-    <a href="{{ path('app_invoices_index') }}">back to list</a>
+    <a href="{{ path('app_invoices_index') }}">back to list</a> #}
 {% endblock %}

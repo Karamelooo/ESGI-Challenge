@@ -45,10 +45,14 @@ class Invoices
     private ?InvoicesNumber $invoices_number = null;    // Numéro de invoice (NE DOIT PAS CHANGER)
                                                         // TODO: Initial du Status + invoicesNumber = Numéro de brouillon/devis/facture
 
+    #[ORM\OneToMany(mappedBy: 'invoice', targetEntity: Order::class)]
+    private Collection $orders;
+
     public function __construct()
     {
         $this->company = new ArrayCollection(); // TODO: ADD Company by id
         $this->status = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -190,6 +194,36 @@ class Invoices
             $invoices_number->setInvoices(1);
         }
         $this->invoices_number = $invoices_number;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): static
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+            $order->setInvoice($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): static
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getInvoice() === $this) {
+                $order->setInvoice(null);
+            }
+        }
+
         return $this;
     }
 

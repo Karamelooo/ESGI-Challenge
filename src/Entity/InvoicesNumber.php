@@ -32,4 +32,9 @@ class InvoicesNumber
 
         return $this;
     }
+    
+    public function __toString(): string
+    {
+        return $this->invoice_number;
+    }
 }

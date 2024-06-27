@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ServicesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
@@ -38,9 +40,13 @@ class Services
     #[ORM\ManyToOne(inversedBy: 'services')]
     private ?Tax $tax = null;
 
+    #[ORM\OneToMany(mappedBy: 'service', targetEntity: Order::class)]
+    private Collection $orders;
+
     public function __construct()
     {
         $this->service_number = Uuid::uuid4()->toString();
+        $this->orders = new ArrayCollection();
     }
     
     public function getId(): ?int
@@ -140,6 +146,36 @@ class Services
     public function setTax(?Tax $tax): static
     {
         $this->tax = $tax;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): static
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+            $order->setService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): static
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getService() === $this) {
+                $order->setService(null);
+            }
+        }
 
         return $this;
     }

@@ -25,6 +25,9 @@ class Payment
     #[ORM\OneToMany(mappedBy: 'payment', targetEntity: PaymentMethod::class)]
     private Collection $method_id;
 
+    #[ORM\ManyToOne(inversedBy: 'payments')]
+    private ?Invoices $invoices = null;
+
     public function __construct()
     {
         $this->method_id = new ArrayCollection();
@@ -85,6 +88,18 @@ class Payment
                 $methodId->setPayment(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getInvoices(): ?Invoices
+    {
+        return $this->invoices;
+    }
+
+    public function setInvoices(?Invoices $invoices): static
+    {
+        $this->invoices = $invoices;
 
         return $this;
     }

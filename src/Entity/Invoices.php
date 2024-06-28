@@ -19,12 +19,8 @@ class Invoices
     #[ORM\OneToMany(mappedBy: 'invoices', targetEntity: Compagny::class)]
     private Collection $company; // Compagnie qui envoie la facture
 
-    // TODO: ADD Client
-
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $last_payment_date = null;
-
-    // TODO: ADD Payment FROM payment entity
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $last_send_date = null;  // Date de la dernière relance
@@ -48,11 +44,18 @@ class Invoices
     #[ORM\OneToMany(mappedBy: 'invoice', targetEntity: Order::class)]
     private Collection $orders;
 
+    #[ORM\OneToMany(mappedBy: 'invoices', targetEntity: Payment::class)]
+    private Collection $payments;
+
+    #[ORM\ManyToOne(inversedBy: 'invoices')]
+    private ?Client $client = null;
+
     public function __construct()
     {
         $this->company = new ArrayCollection(); // TODO: ADD Company by id
         $this->status = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->payments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -230,6 +233,48 @@ class Invoices
     public function __toString(): string
     {
         return $this->getInvoicesNumber();
+    }
+
+    /**
+     * @return Collection<int, Payment>
+     */
+    public function getPayments(): Collection
+    {
+        return $this->payments;
+    }
+
+    public function addPayment(Payment $payment): static
+    {
+        if (!$this->payments->contains($payment)) {
+            $this->payments->add($payment);
+            $payment->setInvoices($this);
+        }
+
+        return $this;
+    }
+
+    public function removePayment(Payment $payment): static
+    {
+        if ($this->payments->removeElement($payment)) {
+            // set the owning side to null (unless already changed)
+            if ($payment->getInvoices() === $this) {
+                $payment->setInvoices(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): static
+    {
+        $this->client = $client;
+
+        return $this;
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Invoices;
+use App\Entity\User;
 use App\Form\InvoicesType;
 use App\Repository\InvoicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,10 +11,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
+
 
 #[Route('/invoices')]
 class InvoicesController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route('/', name: 'app_invoices_index', methods: ['GET'])]
     public function index(InvoicesRepository $invoicesRepository): Response
     {
@@ -25,12 +35,14 @@ class InvoicesController extends AbstractController
     #[Route('/new', name: 'app_invoices_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->security->getUser();
+
         $invoice = new Invoices();
         $form = $this->createForm(InvoicesType::class, $invoice);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $invoice->setCompany($this->getUser()); //TODO: vérifier si ça fonctionne
+            $invoice->setCompany($user->getCompany()); //TODO: vérifier si ça fonctionne
             $invoice->setInvoicesNumber();
             $invoice->setUpdateAt(new \DateTime());
             $entityManager->persist($invoice);

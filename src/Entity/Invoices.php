@@ -232,7 +232,7 @@ class Invoices
 
     public function __toString(): string
     {
-        return $this->getInvoicesNumber();
+        return 'Invoice ' . $this->id;
     }
 
     /**

@@ -19,7 +19,7 @@
         <tbody>
         {% for invoice in invoices %}
             <tr>
-                <td>{{ invoice.invoicesNumber }}</td>
+                <td>{{ invoice.status ~ invoice.invoicesNumber }}</td>
                 <td>{{ invoice.lastPaymentDate ? invoice.lastPaymentDate|date('Y-m-d') : '' }}</td>
                 <td>{{ invoice.lastSendDate ? invoice.lastSendDate|date('Y-m-d') : '' }}</td>
                 <td>{{ invoice.dueDate ? invoice.dueDate|date('Y-m-d') : '' }}</td>

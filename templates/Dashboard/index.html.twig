@@ -1,29 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>WorkWise</title>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    </head>
-    <body class="h-screen flex">
-    <div class="flex flex-col w-64 bg-green-100 p-4">
-        <div class="text-2xl font-bold mb-4">WorkWise</div>
-        <ul class="flex-grow space-y-2 mb-auto">
-            <li class="p-2 cursor-pointer">Tableau de bord</li>
-            <li class="p-2 bg-green-300 rounded cursor-pointer">Devis et facturation</li>
-            <li class="p-2 cursor-pointer">Services</li>
-            <li class="p-2 cursor-pointer">Paiements</li>
-            <li class="p-2 cursor-pointer">Clients</li>
-        </ul>
-        <div class="flex items-center mt-auto">
-            <img src="avatar.png" alt="Image avatar" class="w-12 h-12 rounded-full mr-2">
-            <div>
-                Arthur Valentim<br>
-                <a href="mailto:admin@gmail.com" class="text-sm text-gray-600">admin@gmail.com</a>
-            </div>
-        </div>
-    </div>
+{% extends 'base.html.twig' %}
+
+{% block title %}New Invoices{% endblock %}
+
+{% block body %}
     <div class="flex-grow p-6">
         <div class="flex justify-between items-center mb-4">
             <div class="flex space-x-2">
@@ -142,5 +121,4 @@
             });
         </script>
     </div>
-    </body>
-</html>
+{% endblock %}

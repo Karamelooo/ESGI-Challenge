@@ -3,53 +3,57 @@
 {% block title %}Entreprises{% endblock %}
 
 {% block body %}
-    <h1>Entreprises</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Logo</th>
-                <th>Adresse</th>
-                <th>Ville</th>
-                <th>Code postal</th>
-                <th>Email</th>
-                <th>Siret</th>
-                <th>NAF</th>
-                <th>Site Web</th>
-                <th>Numéro de téléphone</th>
-                <th>Capital</th>
-                <th>Date de création</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for compagny in compagnies %}
-            <tr>
-                <td>{{ compagny.name }}</td>
-                <td>{{ compagny.logoPath }}</td>
-                <td>{{ compagny.adress }}</td>
-                <td>{{ compagny.city }}</td>
-                <td>{{ compagny.zipCode }}</td>
-                <td>{{ compagny.email }}</td>
-                <td>{{ compagny.siret }}</td>
-                <td>{{ compagny.naf }}</td>
-                <td>{{ compagny.website }}</td>
-                <td>{{ compagny.phone }}</td>
-                <td>{{ compagny.capital }}</td>
-                <td>{{ compagny.createdAt|date('d/m/Y') }}</td>
-                <td>
-                    <a href="{{ path('app_compagny_show', {'id': compagny.id}) }}">Voir</a>
-                    <a href="{{ path('app_compagny_edit', {'id': compagny.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="13">Aucune entreprise trouvée</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_compagny_new') }}">Nouvelle</a>
+    <div class="flex-grow p-6">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-2"></div>
+            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_compagny_new') }}">Nouvelle</a></button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+                <thead>
+                <tr>
+                    <th class="border-b p-4 text-left bg-gray-100">Nom</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Logo</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Adresse</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Ville</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Email</th>
+                    <th class="border-b p-4 text-left bg-gray-100">SIRET</th>
+                    <th class="border-b p-4 text-left bg-gray-100">NAF</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Site web</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Numéro de téléphone</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Capital</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Capital</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Date de création</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for compagny in compagnies %}
+                <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">{{ compagny.name }}</td>
+                    <td class="border-b p-4">{{ compagny.logoPath }}</td>
+                    <td class="border-b p-4">{{ compagny.adress }}</td>
+                    <td class="border-b p-4">{{ compagny.city }}</td>
+                    <td class="border-b p-4">{{ compagny.zipCode }}</td>
+                    <td class="border-b p-4">{{ compagny.email }}</td>
+                    <td class="border-b p-4">{{ compagny.siret }}</td>
+                    <td class="border-b p-4">{{ compagny.naf }}</td>
+                    <td class="border-b p-4">{{ compagny.website }}</td>
+                    <td class="border-b p-4">{{ compagny.phone }}</td>
+                    <td class="border-b p-4">{{ compagny.capital }}</td>
+                    <td class="border-b p-4">{{ compagny.createdAt|date('d/m/Y') }}</td>
+                    <td class="border-b p-4">
+                        <a href="{{ path('app_compagny_show', {'id': compagny.id}) }}">Voir</a>
+                        <a href="{{ path('app_compagny_edit', {'id': compagny.id}) }}">Modifier</a>
+                    </td>
+                {% else %}
+                    <tr>
+                        <td colspan="13">Aucune entreprise trouvée</td>
+                    </tr>
+                {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

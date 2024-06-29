@@ -3,33 +3,36 @@
 {% block title %}Abonnements{% endblock %}
 
 {% block body %}
-    <h1>Abonnement</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for subscription in subscriptions %}
-            <tr>
-                <td>{{ subscription.startDate ? subscription.startDate|date('d-m-Y') : '' }}</td>
-                <td>{{ subscription.endDate ? subscription.endDate|date('d-m-Y') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_subscription_show', {'id': subscription.id}) }}">Voir</a>
-                    <a href="{{ path('app_subscription_edit', {'id': subscription.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">Aucun abonnement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_subscription_new') }}">Nouvel</a>
+    <div class="flex-grow p-6">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-2"></div>
+            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_subscription_new') }}">Nouvel</a></button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+                <thead>
+                <tr>
+                    <th class="border-b p-4 text-left bg-gray-100">Date de début</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Date de fin</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for subscription in subscriptions %}
+                    <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">{{ subscription.startDate ? subscription.startDate|date('d-m-Y') : '' }}</td>
+                    <td class="border-b p-4">{{ subscription.endDate ? subscription.endDate|date('d-m-Y') : '' }}</td>
+                    <td class="border-b p-4">
+                        <a href="{{ path('app_subscription_show', {'id': subscription.id}) }}">Voir</a>
+                        <a href="{{ path('app_subscription_edit', {'id': subscription.id}) }}">Modifier</a>
+                    </td>
+                {% else %}
+                    <tr>
+                        <td colspan="13">Aucun abonnement trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

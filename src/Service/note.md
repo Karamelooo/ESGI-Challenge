@@ -3,8 +3,9 @@ dans controller pour limiter les acces :
 ```php
     class YourController extends AbstractController
     {
-        private $userService;
+        private $userService; // important
 
+        // important
         public function __construct(UserService $userService)
         {
             $this->userService = $userService;
@@ -15,10 +16,10 @@ dans controller pour limiter les acces :
          */
         public function yourPage($companyId): Response
         {
-            $this->denyAccessUnlessGranted('access_company', $this->getUser());
+            $this->denyAccessUnlessGranted('access_company', $this->getUser()); // important
 
             return $this->render('your_template.html.twig', [
-                'companyId' => $companyId,
+                'companyId' => $companyId, // important
             ]);
         }
     }

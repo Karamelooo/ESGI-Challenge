@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\MailService;
 use App\Entity\Invoices;
 use App\Entity\User;
 use App\Entity\InvoicesNumber;
@@ -20,9 +21,10 @@ class InvoicesController extends AbstractController
 {
     private Security $security;
 
-    public function __construct(Security $security)
+    public function __construct(Security $security, MailService $mailService)
     {
         $this->security = $security;
+        $this->mailService = $mailService;
     }
 
     #[Route('/', name: 'app_invoices_index', methods: ['GET'])]
@@ -116,6 +118,27 @@ class InvoicesController extends AbstractController
             'headers' => ['DESCRIPTION', 'QTÉ', 'PRIX U.', 'Total HT'],
         ]);
     }
+
+    #[Route('/send', name: 'app_invoices_send', methods: ['GET', 'POST'])]
+    public function send(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+        $company = $user->getCompany();
+        $client = $user->getClient();
+        
+        var_dump("test");
+        $this->mailService->sendEmail(
+            // $company->getEmail(),
+            'guirado.leo@gmail.com',
+            // $client->getEmail(),
+            'guirado.leo@gmail.com',
+            'Devis n°1',
+            'Bonjour, veuillez trouver ci-joint le devis n°1. Cordialement, Léo Guirado.'
+        );
+
+        return new Response('Email sent');
+    }
+
 
     #[Route('/archived', name: 'archived', methods: ['GET'])]
     public function archived(InvoicesRepository $invoicesRepository): Response

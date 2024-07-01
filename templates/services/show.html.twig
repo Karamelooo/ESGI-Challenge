@@ -3,43 +3,40 @@
 {% block title %}Service{% endblock %}
 
 {% block body %}
-    <h1>Service</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Nom</th>
-                <td>{{ service.name }}</td>
-            </tr>
-            <tr>
-                <th>Famille</th>
-                <td>{{ service.category }}</td>
-            </tr>
-            <tr>
-                <th>Prix de vente</th>
-                <td>{{ service.sellingPrice }}</td>
-            </tr>
-            <tr>
-                <th>Prix d'achat</th>
-                <td>{{ service.purchasePrice }}</td>
-            </tr>
-            <tr>
-                <th>Taxes</th>
-                <td>{{ service.tax }}</td>
-            </tr>
-            <tr>
-                <th>Dernière modification</th>
-                <td>{{ service.lastUpdate ? service.lastUpdate|date('d-m-Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Archivé</th>
-                <td>{{ service.status }}</td>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_services_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('app_services_edit', {'id': service.id}) }}">Modifier</a>
-
-    {{ include('services/_delete_form.html.twig') }}
+    <div class="flex-grow p-6">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-2"></div>
+            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_payment_method_new') }}">Nouvelle</a></button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+                <thead>
+                <tr>
+                    <th class="border-b p-4 text-left bg-gray-100">Nom</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Famille</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Prix de vente</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Prix d'achat</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Taxes</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Dernière modification</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Archivé</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">{{ service.name }}</td>
+                    <td class="border-b p-4">{{ service.category }}</td>
+                    <td class="border-b p-4">{{ service.sellingPrice }}</td>
+                    <td class="border-b p-4">{{ service.purchasePrice }}</td>
+                    <td class="border-b p-4">{{ service.tax }}</td>
+                    <td class="border-b p-4">{{ service.lastUpdate ? service.lastUpdate|date('d-m-Y') : '' }}</td>
+                    <td class="border-b p-4">{{ service.status }}</td>
+                    <td class="border-b p-4">
+                        {{ include('services/_delete_form.html.twig') }}
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

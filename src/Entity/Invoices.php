@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Order;
 
 #[ORM\Entity(repositoryClass: InvoicesRepository::class)]
 class Invoices
@@ -42,7 +43,7 @@ class Invoices
     private ?InvoicesNumber $invoices_number = null;    // Numéro de invoice (NE DOIT PAS CHANGER)
                                                         // TODO: Initial du Status + invoicesNumber = Numéro de brouillon/devis/facture
 
-    #[ORM\OneToMany(mappedBy: 'invoice', targetEntity: Order::class)]
+    #[ORM\OneToMany(mappedBy: 'invoice', targetEntity: Order::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $orders;
 
     #[ORM\OneToMany(mappedBy: 'invoices', targetEntity: Payment::class)]
@@ -202,7 +203,7 @@ class Invoices
         return $this->orders;
     }
 
-    public function addOrder(Order $order): static
+    public function addOrder(Order $order): self
     {
         if (!$this->orders->contains($order)) {
             $this->orders->add($order);

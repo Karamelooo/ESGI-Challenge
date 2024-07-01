@@ -1,4 +1,10 @@
-<form method="post" action="{{ path('app_category_delete', {'id': category.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimmer ce service ?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
-    <button class="btn">Supprimer</button>
+<form method="post" action="{{ path('app_client_delete', {'id': client.id}) }}">
+    <input type="checkbox" id="confirm-checkbox" class="hidden">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ client.id) }}">
+    <label for="confirm-checkbox" class="cursor-pointer">Supprimer</label>
+    <div class="confirm-dialog fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md shadow-md hidden" id="confirm-dialog">
+        <p>Êtes-vous certain de vouloir supprimer ce client ?</p>
+        <button type="submit" class="btn">Supprimer</button>
+        <label for="confirm-checkbox" class="text-gray-600 cursor-pointer mt-4 block">Annuler</label>
+    </div>
 </form>

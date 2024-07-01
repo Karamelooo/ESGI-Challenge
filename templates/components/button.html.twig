@@ -1,12 +1,19 @@
 {# templates/components/button.twig #}
-<button
+
+<{{ type|default('button') }}
+{% if type is defined and type == 'a' %}
+href="{{ href|default}}"
+{% endif %}
 {% if id is defined %}
 id="{{ id }}"
 {% endif %}
 class="{{ classes|default('bg-lime-600 hover:bg-lime-500 active:bg-lime-700 text-lime-50 font-bold py-2 px-4 flex gap-2 justify-between items-center') }}{{ additional_classes|default('') }}"
-onclick="{{ onclick | default }}">
+{% if onclick is defined %}
+onclick="{{ onclick }}"
+{% endif %}
+>
 {% if icon is defined %}
   <i class="{{ icon }}"></i>
 {% endif %}
   {{ label|default('Bouton') }}
-</button>
+</{{ type|default('button') }}>

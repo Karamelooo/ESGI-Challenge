@@ -28,20 +28,39 @@ class InvoicesController extends AbstractController
     #[Route('/', name: 'app_invoices_index', methods: ['GET'])]
     public function index(InvoicesRepository $invoicesRepository): Response
     {
+        $invoice = $invoicesRepository->findAll();
+        foreach ($invoice as $invoice) {
+            // tous les id de la table invoices dans le tableau $id
+            $id[] = $invoice->getId();
+        }
         return $this->render('invoices/index.html.twig', [
-            'invoices' => $invoicesRepository->findAll(),
+            'invoices' => [
+                ['D2023001', '2024-06-01', '2024-06-05', '2024-06-10', 'Voir / Modifier'],
+                ['D2023002', '2024-06-02', '2024-06-06', '2024-06-11', 'Voir / Modifier'],
+                ['D2023003', '2024-06-03', '2024-06-07', '2024-06-12', 'Voir / Modifier'],
+                ['D2023004', '2024-06-04', '2024-06-08', '2024-06-13', 'Voir / Modifier'],
+                ['D2023005', '2024-06-05', '2024-06-09', '2024-06-14', 'Voir / Modifier'],
+                ['D2023006', '2024-06-06', '2024-06-10', '2024-06-15', 'Voir / Modifier'],
+                ['D2023007', '2024-06-07', '2024-06-11', '2024-06-16', 'Voir / Modifier'],
+                ['D2023008', '2024-06-08', '2024-06-12', '2024-06-17', 'Voir / Modifier'],
+                ['D2023009', '2024-06-09', '2024-06-13', '2024-06-18', 'Voir / Modifier'],
+                ['D2023010', '2024-06-10', '2024-06-14', '2024-06-19', 'Voir / Modifier'],
+            ],
+            // 'id' => $id,
+            'headers' => ['Devis', 'Date Dernier Paiement', 'Date Dernier Envoi', 'Dernier Update', 'Action'],
         ]);
     }
 
-    #[Route('/new', name: 'app_invoices_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/newdevis', name: 'app_invoices_new_devis', methods: ['GET', 'POST'])]
+    public function newdevis(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $user = $this->getUser(); // Use $this->getUser() directly instead of $this->security->getUser()
+        $user = $this->getUser();
+        $company = $user->getCompany();
+
 
         $invoice = new Invoices();
-
         $invoice->setInvoicesNumber($entityManager);
-        $invoice->setCompany($user->getCompany()); // Verify this method is implemented correctly
+        $invoice->setCompany($user->getCompany());
         $invoice->setCreatedAt(new \DateTimeImmutable());
 
         $form = $this->createForm(InvoicesType::class, $invoice);
@@ -55,10 +74,46 @@ class InvoicesController extends AbstractController
             return $this->redirectToRoute('app_invoices_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('invoices/new.html.twig', [
+        return $this->render('invoices/newdevis.html.twig', [
             'form' => $form->createView(),
             'invoice' => $invoice,
-            'client' => $user->getCompany()->getClients(),
+            'company' => $company,
+            'user' => $user,
+            'invoiceNumber' => $invoice->getInvoicesNumber()->getInvoiceNumber(),
+            'headers' => ['DESCRIPTION', 'QTÉ', 'PRIX U.', 'Total HT'],
+        ]);
+    }
+
+    #[Route('/newfacture', name: 'app_invoices_new_facture', methods: ['GET', 'POST'])]
+    public function newfacture(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+        $company = $user->getCompany();
+
+
+        $invoice = new Invoices();
+        $invoice->setInvoicesNumber($entityManager);
+        $invoice->setCompany($user->getCompany());
+        $invoice->setCreatedAt(new \DateTimeImmutable());
+
+        $form = $this->createForm(InvoicesType::class, $invoice);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $invoice->setUpdateAt(new \DateTime());
+            $entityManager->persist($invoice);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_invoices_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('invoices/newfacture.html.twig', [
+            'form' => $form->createView(),
+            'invoice' => $invoice,
+            'company' => $company,
+            'user' => $user,
+            'invoiceNumber' => $invoice->getInvoicesNumber()->getInvoiceNumber(),
+            'headers' => ['DESCRIPTION', 'QTÉ', 'PRIX U.', 'Total HT'],
         ]);
     }
 

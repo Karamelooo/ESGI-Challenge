@@ -14,19 +14,20 @@ class InvoicesNumber
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $invoice_number = null;
+    private ?int $invoice_number = 0;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getInvoiceNumber(): ?string
+    public function getInvoiceNumber(): ?int
     {
         return $this->invoice_number;
     }
 
-    public function setInvoiceNumber(string $invoice_number): static
+    public function setInvoiceNumber(?int $invoice_number): static
+
     {
         $this->invoice_number = $invoice_number;
 
@@ -37,4 +38,5 @@ class InvoicesNumber
     {
         return $this->invoice_number;
     }
+
 }

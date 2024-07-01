@@ -21,7 +21,7 @@ md:block md:w-1/5 md:block md:relative">
                         } %}
                     {% include 'components/menu-item.html.twig' with {
                         'icon': 'fas fa-concierge-bell',
-                        'link': '/category/',
+                        'link': '/services/',
                         'label': 'Services'
                         } %}
                     {% include 'components/menu-item.html.twig' with {
@@ -33,6 +33,11 @@ md:block md:w-1/5 md:block md:relative">
                         'icon': 'fas fa-users',
                         'link': '/client/',
                         'label': 'Clients'
+                        } %}
+                    {% include 'components/menu-item.html.twig' with {
+                        'icon': 'fas fa-right-from-bracket',
+                        'link': '/logout/',
+                        'label': 'Déconnexion'
                         } %}
                 </ul>
             </nav>

@@ -45,6 +45,7 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/dashboard, roles: ROLE_USER }
         - { path: ^/invoices, roles: ROLE_USER }
+        - { path: ^/services, roles: ROLE_USER }
         - { path: ^/category, roles: ROLE_USER }
         - { path: ^/payment, roles: ROLE_USER }
         - { path: ^/client, roles: ROLE_USER }

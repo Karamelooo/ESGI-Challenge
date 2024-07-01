@@ -41,8 +41,16 @@ class InvoicesController extends AbstractController
         $invoice = new Invoices();
 
         $invoice->setInvoicesNumber($entityManager);
-        $invoice->setCompany($user->getCompany()); // Verify this method is implemented correctly
+        $invoice->setCompany($user->getCompany());
         $invoice->setCreatedAt(new \DateTimeImmutable());
+        $company = $user->getCompany();
+        var_dump($company); 
+        // var_dump($company);
+        // var_dump($clients);
+        die;
+        $client = $company->getClients();
+        $order = $company->getOrders();
+
 
         $form = $this->createForm(InvoicesType::class, $invoice);
         $form->handleRequest($request);
@@ -58,7 +66,7 @@ class InvoicesController extends AbstractController
         return $this->render('invoices/new.html.twig', [
             'form' => $form->createView(),
             'invoice' => $invoice,
-            'client' => $user->getCompany()->getClients(),
+            'client' => $client,
         ]);
     }
 

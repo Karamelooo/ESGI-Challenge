@@ -3,11 +3,7 @@
 {% block title %}Modifier méthode de paiement{% endblock %}
 
 {% block body %}
-    <h1>Modifier méthode de paiement</h1>
-
     {{ include('payment_method/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_payment_method_index') }}">Retour à la liste</a>
 
     {{ include('payment_method/_delete_form.html.twig') }}
 {% endblock %}

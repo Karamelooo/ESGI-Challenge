@@ -1,4 +1,44 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+{% block body %}
+    <div class="min-h-screen flex justify-center">
+        <div class="bg-white p-16 rounded shadow-2xl w-full">
+            <h2 class="text-3xl font-bold mb-10 text-gray-800">Gestion formule</h2>
+
+            {{ form_start(form) }}
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    {{ form_label(form.price, 'Prix de la formule', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.price, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.price) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.name, 'Nom de la formule', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.name, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.name) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.subscription, 'Abonnement correspondant', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.subscription, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.subscription) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.formuleReducer, 'Formule de réduction', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.formuleReducer, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.formuleReducer) }}
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <button class="block w-full bg-green-500 hover:bg-green-300 p-4 rounded text-white hover:text-white transition duration-300">Enregistrer</button>
+                <a href="{{ path('app_formule_index') }}">Retour à la liste</a>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
 {{ form_end(form) }}

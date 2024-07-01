@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Order;
 use App\Entity\Tax;
+use App\Entity\Services;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -17,14 +18,7 @@ class OrderType extends AbstractType
         $builder
             ->add('reducer')
             ->add('quantity')
-            ->add('services', CollectionType::class, [
-                'entry_type' => ServicesType::class,
-                'entry_options' => ['label' => false],
-                'allow_add' => true,
-                'by_reference' => false,
-                'prototype' => true,
-                'prototype_name' => '__name__',
-            ])
+            ->add('service', ServicesType::class)
             ->add('tax', EntityType::class, [
                 'class' => Tax::class,
                 'choice_label' => function ($tax) {

@@ -3,9 +3,7 @@
 {% block title %}Nouvelle entreprise{% endblock %}
 
 {% block body %}
-    <h1>Création d'une nouvelle entreprise</h1>
 
     {{ include('compagny/_form.html.twig') }}
 
-    <a href="{{ path('app_compagny_index') }}">Retour à la liste</a>
 {% endblock %}

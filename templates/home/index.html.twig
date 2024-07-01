@@ -26,7 +26,13 @@
                     <a href="/" class="font-bold text-xl">WorkWise</a>
                 </div>
                 <div class="flex space-x-4">
-                    <a href="/login" class="hover:underline">Espace client</a>
+                    <a href=
+                    {% if app.user %}
+                    "/dashboard"
+                    {% else %}
+                    "/login"
+                    {% endif %}
+ class="hover:underline">Espace client</a>
                 </div>
             </div>
         </nav>

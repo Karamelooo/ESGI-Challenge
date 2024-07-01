@@ -25,7 +25,7 @@ class Subscription
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end_date = null;
 
-    #[ORM\OneToMany(mappedBy: 'subscription', targetEntity: formule::class)]
+    #[ORM\OneToMany(mappedBy: 'subscription', targetEntity: Formule::class)]
     private Collection $formule;
 
     public function __construct()

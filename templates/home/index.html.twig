@@ -16,14 +16,35 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('static/css/style.css') }}">
     </head>
     <body class="flex flex-col md:flex-row">
-    <main class="flex-1 ml-1/5">
+    <main class="flex-1 ml-1/5 dark:bg-onyx-900">
 
 {% block body %}
-    <header class="text-center bg-lime-300 text-black">
+    <header class="text-center bg-lime-300 dark:bg-lime-700 text-black dark:text-white">
         <nav class="text-white py-4">
             <div class="container mx-auto flex justify-between items-center">
                 <div class="flex items-center">
                     <a href="/" class="font-bold text-xl">WorkWise</a>
+                        <button id="theme-toggle" class="mt-4 p-2 bg-lime-500 text-white rounded">Toggle Dark Mode</button>
+
+                    <script>
+                        document.getElementById('theme-toggle').addEventListener('click', function() {
+                        document.body.classList.toggle('dark');
+                        
+                        // Optionally, store the user's preference in localStorage
+                        if (document.body.classList.contains('dark')) {
+                            localStorage.setItem('theme', 'dark');
+                        } else {
+                            localStorage.setItem('theme', 'light');
+                        }
+                        });
+
+                        // On page load, check the user's preference and apply it
+                        if (localStorage.getItem('theme') === 'dark') {
+                        document.body.classList.add('dark');
+                        } else {
+                        document.body.classList.remove('dark');
+                        }
+                    </script>
                 </div>
                 <div class="flex space-x-4">
                     <a href=
@@ -43,25 +64,25 @@
     <main class="container mx-auto p-8">
         <!-- Section 1 -->
         <section class="my-12">
-            <h2 class="text-3xl font-bold text-center">Pourquoi choisir notre solution ?</h2>
+            <h2 class="text-3xl font-bold text-center dark:text-white">Pourquoi choisir notre solution ?</h2>
             <div class="mt-8 space-y-4">
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">Automatisation des tâches</h3>
                     <p>Créez et envoyez des devis et factures en quelques clics.</p>
                 </div>
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">Suivi des paiements</h3>
                     <p>Gardez un œil sur vos paiements et relancez vos clients automatiquement.</p>
                 </div>
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">Personnalisation</h3>
                     <p>Adaptez vos documents à l'image de votre marque avec des modèles personnalisables.</p>
                 </div>
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">Conformité fiscale</h3>
                     <p>Restez en règle avec la législation française en vigueur.</p>
                 </div>
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">Sécurité</h3>
                     <p>Vos données sont protégées par des mesures de sécurité de pointe.</p>
                 </div>
@@ -70,25 +91,25 @@
 
         <!-- Section 2 -->
         <section class="my-12">
-            <h2 class="text-3xl font-bold text-center">Tout ce dont vous avez besoin en un seul endroit</h2>
+            <h2 class="text-3xl font-bold text-center dark:text-white">Tout ce dont vous avez besoin en un seul endroit</h2>
             <div class="mt-8 space-y-4">
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">Création de devis et factures</h3>
                     <p>Interface simple et rapide pour générer vos documents.</p>
                 </div>
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">Gestion de clients</h3>
                     <p>Base de données client intégrée pour un suivi optimal.</p>
                 </div>
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">Rapports financiers</h3>
                     <p>Analysez vos revenus et dépenses grâce à des rapports détaillés.</p>
                 </div>
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">Suivi des paiements</h3>
                     <p>Notification des paiements reçus et gestion des relances automatiques.</p>
                 </div>
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">Support client dédié</h3>
                     <p>Une équipe à votre écoute pour vous aider en cas de besoin.</p>
                 </div>
@@ -97,17 +118,17 @@
 
         <!-- Section 3 -->
         <section class="my-12">
-            <h2 class="text-3xl font-bold text-center">Ce que disent nos utilisateurs</h2>
+            <h2 class="text-3xl font-bold text-center dark:text-white">Ce que disent nos utilisateurs</h2>
             <div class="mt-8 space-y-4">
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <p class="italic">"Un gain de temps précieux, je peux maintenant me concentrer sur le développement sans me soucier de la paperasse."</p>
                     <p class="text-right font-semibold">- Marie, Développeuse Front-End</p>
                 </div>
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <p class="italic">"L'outil est très intuitif et m'aide à suivre facilement mes projets et mes revenus."</p>
                     <p class="text-right font-semibold">- Thomas, Développeur Full Stack</p>
                 </div>
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <p class="italic">"La personnalisation des devis et factures me permet de donner une image professionnelle à mes clients."</p>
                     <p class="text-right font-semibold">- Lucie, Développeuse Mobile</p>
                 </div>
@@ -116,24 +137,24 @@
 
         <!-- Section 4 -->
         <section class="my-12 text-center">
-            <h2 class="text-3xl font-bold">Prêt à simplifier votre gestion ?</h2>
-            <p class="mt-4">Essayez notre solution gratuitement ou choisissez la version freemium pour profiter des fonctionnalités de base sans limite de temps.</p>
-            <a href="/login" class="mt-6 inline-block px-6 py-3 bg-lime-300 text-white rounded-lg shadow hover:bg-lime-400">Démarrer avec la version freemium</a>
+            <h2 class="text-3xl font-bold dark:text-white">Prêt à simplifier votre gestion ?</h2>
+            <p class="mt-4 dark:text-white">Essayez notre solution gratuitement ou choisissez la version freemium pour profiter des fonctionnalités de base sans limite de temps.</p>
+            <a href="/login" class="mt-6 inline-block px-6 py-3 bg-lime-300 dark:bg-lime-700 text-white rounded-lg shadow hover:bg-lime-400 dark:hover:bg-lime-600">Démarrer avec la version freemium</a>
         </section>
 
         <!-- Section 5 -->
         <section class="my-12">
-            <h2 class="text-3xl font-bold text-center">Nous sommes là pour vous</h2>
+            <h2 class="text-3xl font-bold text-center dark:text-white">Nous sommes là pour vous</h2>
             <div class="mt-8 space-y-4">
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">Support</h3>
                     <p>Contactez notre équipe via chat ou email.</p>
                 </div>
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">Blog</h3>
                     <p>Conseils et astuces pour les développeurs freelance.</p>
                 </div>
-                <div class="p-4 bg-white rounded-lg shadow">
+                <div class="p-4 bg-white dark:bg-black dark:text-white rounded-lg shadow">
                     <h3 class="text-xl font-semibold">FAQ</h3>
                     <p>Toutes les réponses à vos questions.</p>
                 </div>
@@ -141,7 +162,7 @@
         </section>
     </main>
 
-    <footer class="bg-onyx-800 text-white py-8">
+    <footer class="bg-onyx-800 dark:bg-onyx-200 text-white dark:text-black py-8">
         <div class="container mx-auto text-center">
             <p>&copy; 2024 WorkWise. Tous droits réservés.</p>
         </div>

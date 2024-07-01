@@ -3,22 +3,29 @@
 {% block title %}Méthode de paiement{% endblock %}
 
 {% block body %}
-    <h1>Méthode de paiement</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Méthode de paiement</th>
-                <td>{{ payment_method.method }}</td>
-                <th>Montant du paiement</th>
-                <td>{{ payment_method.payment ? payment_method.payment.amount : 'N/A' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_payment_method_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('app_payment_method_edit', {'id': payment_method.id}) }}">Modifier</a>
-
-    {{ include('payment_method/_delete_form.html.twig') }}
+    <div class="flex-grow p-6">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-2"></div>
+            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_payment_method_new') }}">Nouvelle</a></button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+                <thead>
+                <tr>
+                    <th class="border-b p-4 text-left bg-gray-100">Méthode de paiement</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Montant du paiement</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">{{ payment_method.method }}</td>
+                    <td class="border-b p-4">{{ payment_method.payment ? payment_method.payment.amount : 'N/A' }}</td>
+                    <td class="border-b p-4">
+                        {{ include('payment_method/_delete_form.html.twig') }}
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

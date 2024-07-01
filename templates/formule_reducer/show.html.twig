@@ -3,28 +3,31 @@
 {% block title %}Formule de réduction{% endblock %}
 
 {% block body %}
-    <h1>Formule de réduction</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Date de début</th>
-                <td>{{ formule_reducer.startDate ? formule_reducer.startDate|date('d-m-Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date de fin</th>
-                <td>{{ formule_reducer.endDate ? formule_reducer.endDate|date('d-m-Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Valeur</th>
-                <td>{{ formule_reducer.value }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_formule_reducer_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('app_formule_reducer_edit', {'id': formule_reducer.id}) }}">Modifier</a>
-
-    {{ include('formule_reducer/_delete_form.html.twig') }}
+    <div class="flex-grow p-6">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-2"></div>
+            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_formule_reducer_new') }}">Nouvelle</a></button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+                <thead>
+                <tr>
+                    <th class="border-b p-4 text-left bg-gray-100">Date de début</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Date de fin</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Valeur</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">{{ formule_reducer.startDate ? formule_reducer.startDate|date('d-m-Y') : '' }}</td>
+                    <td class="border-b p-4">{{ formule_reducer.endDate ? formule_reducer.endDate|date('d-m-Y') : '' }}</td>
+                    <td class="border-b p-4">{{ formule_reducer.value }}</td>
+                    <td class="border-b p-4">
+                        {{ include('formule_reducer/_delete_form.html.twig') }}
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

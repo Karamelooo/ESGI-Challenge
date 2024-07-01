@@ -3,24 +3,29 @@
 {% block title %}Formule{% endblock %}
 
 {% block body %}
-    <h1>Formule</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Prix</th>
-                <td>{{ formule.price }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ formule.name }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_formule_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('app_formule_edit', {'id': formule.id}) }}">Modifier</a>
-
-    {{ include('formule/_delete_form.html.twig') }}
+    <div class="flex-grow p-6">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-2"></div>
+            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_formule_new') }}">Nouvelle</a></button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+                <thead>
+                <tr>
+                    <th class="border-b p-4 text-left bg-gray-100">Prix</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Nom</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">{{ formule.price }}</td>
+                    <td class="border-b p-4">{{ formule.name }}</td>
+                    <td class="border-b p-4">
+                        {{ include('formule/_delete_form.html.twig') }}
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

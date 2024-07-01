@@ -56,7 +56,6 @@ class Compagny
     #[ORM\OneToMany(mappedBy: 'compagny_subcription', targetEntity: Subscription::class)]
     private Collection $subscriptions;
 
-<<<<<<< HEAD
     #[ORM\OneToMany(mappedBy: 'company', targetEntity: Invoices::class)]
     private Collection $invoices;
 
@@ -65,10 +64,6 @@ class Compagny
 
     #[ORM\OneToMany(mappedBy: 'compagny', targetEntity: Client::class)]
     private Collection $clients;
-=======
-    #[ORM\ManyToOne(inversedBy: 'company')]
-    private ?Invoices $invoices = null;
->>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
 
     public function __construct()
     {
@@ -262,19 +257,14 @@ class Compagny
         return $this;
     }
 
-<<<<<<< HEAD
     /**
      * @return Collection|Invoices[]
      */
     public function getInvoices(): Collection
-=======
-    public function getInvoices(): ?Invoices
->>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
     {
         return $this->invoices;
     }
 
-<<<<<<< HEAD
     public function addInvoice(Invoices $invoice): self
     {
         if (!$this->invoices->contains($invoice)) {
@@ -353,11 +343,7 @@ class Compagny
                 $client->setCompagny(null);
             }
         }
-=======
-    public function setInvoices(?Invoices $invoices): static
-    {
-        $this->invoices = $invoices;
->>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
+
 
         return $this;
     }

@@ -20,14 +20,11 @@
         {% for invoice in invoices %}
             <tr>
                 <td>{{ invoice.invoicesNumber }}</td>
-<<<<<<< HEAD
                 <td>
                     {% for status in invoice.status %}
                         {{ status }}<br>
                     {% endfor %}
                 </td>
-=======
->>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
                 <td>{{ invoice.lastPaymentDate ? invoice.lastPaymentDate|date('Y-m-d') : '' }}</td>
                 <td>{{ invoice.lastSendDate ? invoice.lastSendDate|date('Y-m-d') : '' }}</td>
                 <td>{{ invoice.dueDate ? invoice.dueDate|date('Y-m-d') : '' }}</td>

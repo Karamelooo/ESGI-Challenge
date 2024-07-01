@@ -3,10 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\InvoicesRepository;
-<<<<<<< HEAD
 use Doctrine\ORM\EntityManagerInterface;
-=======
->>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -20,24 +17,12 @@ class Invoices
     #[ORM\Column]
     private ?int $id = null;
 
-<<<<<<< HEAD
     #[ORM\ManyToOne(targetEntity: Compagny::class, inversedBy: 'invoices')]
     private ?Compagny $company = null; // Compagnie qui envoie la facture
-=======
-    #[ORM\OneToMany(mappedBy: 'invoices', targetEntity: Compagny::class)]
-    private Collection $company; // Compagnie qui envoie la facture
-
-    // TODO: ADD Client
->>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $last_payment_date = null;
 
-<<<<<<< HEAD
-=======
-    // TODO: ADD Payment FROM payment entity
-
->>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $last_send_date = null;  // Date de la dernière relance
 
@@ -57,7 +42,6 @@ class Invoices
     private ?InvoicesNumber $invoices_number = null;    // Numéro de invoice (NE DOIT PAS CHANGER)
                                                         // TODO: Initial du Status + invoicesNumber = Numéro de brouillon/devis/facture
 
-<<<<<<< HEAD
     #[ORM\OneToMany(mappedBy: 'invoice', targetEntity: Order::class)]
     private Collection $orders;
 
@@ -72,12 +56,6 @@ class Invoices
         $this->status = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->payments = new ArrayCollection();
-=======
-    public function __construct()
-    {
-        $this->company = new ArrayCollection(); // TODO: ADD Company by id
-        $this->status = new ArrayCollection();
->>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
     }
 
     public function getId(): ?int
@@ -85,42 +63,14 @@ class Invoices
         return $this->id;
     }
 
-<<<<<<< HEAD
     public function getCompany(): ?Compagny
-=======
-    /**
-     * @return Collection<int, Compagny>
-     */
-    public function getCompany(): Collection
->>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
     {
         return $this->company;
     }
 
-<<<<<<< HEAD
     public function setCompany(?Compagny $company): self
     {
         $this->company = $company;
-=======
-    public function addCompany(Compagny $company): static
-    {
-        if (!$this->company->contains($company)) {
-            $this->company->add($company);
-            $company->setInvoices($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCompany(Compagny $company): static
-    {
-        if ($this->company->removeElement($company)) {
-            // set the owning side to null (unless already changed)
-            if ($company->getInvoices() === $this) {
-                $company->setInvoices(null);
-            }
-        }
->>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
 
         return $this;
     }
@@ -220,7 +170,6 @@ class Invoices
         return $this->invoices_number;
     }
 
-<<<<<<< HEAD
     public function setInvoicesNumber(EntityManagerInterface $entityManager): static
     {
         if ($this->invoices_number === null) {
@@ -319,17 +268,6 @@ class Invoices
     {
         $this->client = $client;
 
-=======
-    public function setInvoicesNumber(): static
-    {
-        if ($invoices_number !== null) {
-            $invoices_number->setInvoices($invoices_number+1);
-        } else {
-            $invoices_number = new InvoicesNumber();
-            $invoices_number->setInvoices(1);
-        }
-        $this->invoices_number = $invoices_number;
->>>>>>> 55d33bb (feat(invoice): add invoice & invoiceStatus)
         return $this;
     }
 

@@ -36,20 +36,14 @@ class InvoicesController extends AbstractController
     #[Route('/new', name: 'app_invoices_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $user = $this->getUser(); // Use $this->getUser() directly instead of $this->security->getUser()
+        $user = $this->getUser();
+        $company = $user->getCompany();
+
 
         $invoice = new Invoices();
-
         $invoice->setInvoicesNumber($entityManager);
         $invoice->setCompany($user->getCompany());
         $invoice->setCreatedAt(new \DateTimeImmutable());
-        $company = $user->getCompany();
-        var_dump($company); 
-        // var_dump($company);
-        // var_dump($clients);
-        die;
-        $client = $company->getClients();
-        $order = $company->getOrders();
 
 
         $form = $this->createForm(InvoicesType::class, $invoice);
@@ -66,7 +60,8 @@ class InvoicesController extends AbstractController
         return $this->render('invoices/new.html.twig', [
             'form' => $form->createView(),
             'invoice' => $invoice,
-            'client' => $client,
+            'company' => $company,
+            'user' => $user,
         ]);
     }
 

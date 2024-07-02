@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\OrderRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Invoices;
+use App\Entity\Services;
+use App\Entity\Tax;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
@@ -97,6 +100,6 @@ class Order
 
     public function __toString(): string
     {
-        return $this->service->getId();
+        return $this->service ? (string) $this->service->getId() : '';
     }
 }

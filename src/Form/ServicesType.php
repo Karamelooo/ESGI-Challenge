@@ -37,11 +37,6 @@ class ServicesType extends AbstractType
             ->add('selling_price', IntegerType::class, [
                 'label' => 'Prix de vente',
             ])
-            ->add('tax', EntityType::class, [
-                'class' => Tax::class,
-                'choice_label' => 'percent',
-                'label' => 'TVA',
-            ])
         ;
     }
 

@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\InvoicesRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Order;
 
 #[ORM\Entity(repositoryClass: InvoicesRepository::class)]
 class Invoices
@@ -16,8 +18,8 @@ class Invoices
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'invoices', targetEntity: Compagny::class)]
-    private Collection $company; // Compagnie qui envoie la facture
+    #[ORM\ManyToOne(targetEntity: Compagny::class, inversedBy: 'invoices')]
+    private ?Compagny $company = null; // Compagnie qui envoie la facture
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $last_payment_date = null;
@@ -41,7 +43,7 @@ class Invoices
     private ?InvoicesNumber $invoices_number = null;    // Numéro de invoice (NE DOIT PAS CHANGER)
                                                         // TODO: Initial du Status + invoicesNumber = Numéro de brouillon/devis/facture
 
-    #[ORM\OneToMany(mappedBy: 'invoice', targetEntity: Order::class)]
+    #[ORM\OneToMany(mappedBy: 'invoice', targetEntity: Order::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $orders;
 
     #[ORM\OneToMany(mappedBy: 'invoices', targetEntity: Payment::class)]
@@ -52,7 +54,6 @@ class Invoices
 
     public function __construct()
     {
-        $this->company = new ArrayCollection(); // TODO: ADD Company by id
         $this->status = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->payments = new ArrayCollection();
@@ -63,32 +64,14 @@ class Invoices
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Compagny>
-     */
-    public function getCompany(): Collection
+    public function getCompany(): ?Compagny
     {
         return $this->company;
     }
 
-    public function addCompany(Compagny $company): static
+    public function setCompany(?Compagny $company): self
     {
-        if (!$this->company->contains($company)) {
-            $this->company->add($company);
-            $company->setInvoices($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCompany(Compagny $company): static
-    {
-        if ($this->company->removeElement($company)) {
-            // set the owning side to null (unless already changed)
-            if ($company->getInvoices() === $this) {
-                $company->setInvoices(null);
-            }
-        }
+        $this->company = $company;
 
         return $this;
     }
@@ -188,15 +171,27 @@ class Invoices
         return $this->invoices_number;
     }
 
-    public function setInvoicesNumber(): static
+    public function setInvoicesNumber(EntityManagerInterface $entityManager): static
     {
-        if ($invoices_number !== null) {
-            $invoices_number->setInvoices($invoices_number+1);
-        } else {
-            $invoices_number = new InvoicesNumber();
-            $invoices_number->setInvoices(1);
+        if ($this->invoices_number === null) {
+            $invoiceNumber = new InvoicesNumber();
+            $invoiceNumber->setInvoiceNumber(1);
+
+            $entityManager->persist($invoiceNumber);
+            $entityManager->flush();
+
+            $this->invoices_number = $invoiceNumber;
+            return $this;
         }
-        $this->invoices_number = $invoices_number;
+        $this->invoices_number->nextInvoicesNumber();
+
+        return $this;
+    }
+
+    public function nextInvoicesNumber(): static
+    {
+        $invoiceNumber = $this->invoices_number;
+        $this->invoices_number = $invoiceNumber+1;
         return $this;
     }
 
@@ -208,7 +203,7 @@ class Invoices
         return $this->orders;
     }
 
-    public function addOrder(Order $order): static
+    public function addOrder(Order $order): self
     {
         if (!$this->orders->contains($order)) {
             $this->orders->add($order);

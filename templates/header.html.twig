@@ -1,14 +1,19 @@
-<header class="bg-lime-50 text-black mx-auto flex justify-between items-center py-4 p-4 w-full z-10
+<header class="bg-lime-50 dark:bg-lime-950 dark:text-white text-black mx-auto flex justify-between items-center py-4 p-4 w-full z-10
 md:block md:w-1/5 md:mx-0 md:absolute">
     <a href="/" class="text-xl font-bold hover:text-gray-400">WorkWise</a>
     <button id="menu-toggle" class="md:hidden focus:outline-none">
         <i class="fas fa-bars"></i>
     </button>
 </header>
-<nav id="menu" class="hidden bg-lime-50 w-full pt-24 h-screen absolute
+<nav id="menu" class="hidden bg-lime-50 dark:bg-lime-950 w-full pt-24 h-screen absolute
 md:block md:w-1/5 md:block md:relative">
                 <ul class="flex flex-col items-center
                 md:items-start">
+                    {% include 'components/menu-item.html.twig' with {
+                        'icon': 'fa-solid fa-building',
+                        'link': '/compagny/',
+                        'label': 'Entreprise'
+                        } %}
                     {% include 'components/menu-item.html.twig' with {
                         'icon': 'fas fa-tachometer-alt',
                         'link': '/dashboard/',
@@ -21,7 +26,7 @@ md:block md:w-1/5 md:block md:relative">
                         } %}
                     {% include 'components/menu-item.html.twig' with {
                         'icon': 'fas fa-concierge-bell',
-                        'link': '/category/',
+                        'link': '/services/',
                         'label': 'Services'
                         } %}
                     {% include 'components/menu-item.html.twig' with {
@@ -34,6 +39,13 @@ md:block md:w-1/5 md:block md:relative">
                         'link': '/client/',
                         'label': 'Clients'
                         } %}
+                    {% include 'components/menu-item.html.twig' with {
+                        'icon': 'fas fa-right-from-bracket',
+                        'link': '/logout/',
+                        'label': 'Déconnexion'
+                        } %}
+                        <button id="theme-toggle" class="mt-4 p-2 bg-lime-500 text-white rounded">Toggle Dark Mode</button>
+
                 </ul>
             </nav>
         <script>
@@ -42,4 +54,22 @@ md:block md:w-1/5 md:block md:relative">
             menu.classList.toggle('hidden');
             menu.classList.toggle('block');
         });
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+  document.body.classList.toggle('dark');
+  
+  // Optionally, store the user's preference in localStorage
+  if (document.body.classList.contains('dark')) {
+    localStorage.setItem('theme', 'dark');
+  } else {
+    localStorage.setItem('theme', 'light');
+  }
+});
+
+// On page load, check the user's preference and apply it
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark');
+} else {
+  document.body.classList.remove('dark');
+}
+
     </script>

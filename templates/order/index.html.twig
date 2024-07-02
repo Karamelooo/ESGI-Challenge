@@ -32,6 +32,9 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_order_new') }}">Create new</a>
+    {% include 'components/button.html.twig' with {
+    'type':'a',
+    'icon':'fa fa-plus',
+    'label': 'Nouvelle',
+    'href': path('app_order_new')} %}
 {% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Invoice{% endblock %}
+
+{% block body %}
+<div class="container mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-4 p-4 ">
+    {{ form_start(form) }}
+    <!-- Header -->
+    <div class="flex justify-between items-center">
+        <!-- Informations de l'entreprise -->
+        <div class="px-4 py-2 bg-lime-50 border-t border-lime-200 flex-col">
+            <h2 class="text-lg text-lime-600 font-semibold">{{ company.name }}</h2>
+            
+        </div>
+        <div class="flex-col"> 
+            <!-- Informations du devis -->
+            <div class="px-4 py-2 bg-lime-50 border-t border-lime-200">
+                <h2 class="text-lg text-lime-600 font-semibold">Devis {{ invoiceNumber }}</h2>
+            </div>
+
+            <!-- Informations du client -->
+            <div class="px-4 py-2 bg-lime-50 border-t border-lime-200">
+                <h2 class="text-lg text-lime-600 font-semibold">Client</h2>
+                {{ form_row(form.client) }}
+                {{ form_row(form.due_date) }}
+            </div>
+        </div>
+    </div>
+    
+    <!-- divider -->
+    <div colspan="4" class="py-2 border-b border-lime-500"></div>
+
+    <!-- Détails du devis -->
+    <div class="px-4 py-2 bg-lime-50 border-t border-lime-200">
+        <h2 class="text-lg text-lime-600 font-semibold">Prestations du devis {{ form_row(form.orders) }}</h2>
+        {% include 'components/table.html.twig' with {
+            rows: [
+                [ 'F2023001', 'Client A', '2024-07-01', '1000€' ],
+                [ 'F2023002', 'Client B', '2024-07-05', '1500€' ],
+                [ 'F2023003', 'Client C', '2024-07-10', '1200€' ],
+            ]
+        } %}
+    </div>
+    <div class="flex flex-row justify-between items-center">
+        <!-- Conditions de paiement -->
+        <div class="flex-col">
+            <div colspan="3" class="py-2 text-right font-semibold">Conditions de paiement</div>
+            <div class="py-2">Méthodes de paiement acceptées : Chèque, Virement bancaire, Carte bancaire</div>
+        </div>
+        <!-- Total -->
+        <div class="flex-col">
+            <div colspan="3" class="py-2 text-right font-semibold">Total</div>
+            <div class="py-2">{{ 1000 + 1500 + 1200 }}€</div>
+        </div>
+    </div>
+    <!-- card "bon pour accord", date et signature -->
+    <div class="flex-row border-4 mt-6">
+        <div colspan="4" class="py-2 text-right">Pour le client</div>
+        <div colspan="4" class="py-2 text-right">Mention "Bon pour accord", date et signature</div>
+        <div colspan="4" class="py-2 text-right">../../....</div>
+    </div>
+    {% include 'components/button.html.twig' with {'icon': 'fa-regular fa-paper-plane','label': 'Envoyer'} %}
+    {{ form_end(form) }}
+</div>
+
+{% endblock %}  

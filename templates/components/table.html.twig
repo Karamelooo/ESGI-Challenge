@@ -1,0 +1,26 @@
+{# templates/components/_table.html.twig #}
+
+<table class="min-w-full bg-white">
+  <thead class="bg-lime-100">
+    <tr>
+      {# Headers passed in the context #}
+      {% for header in headers %}
+        <th class="py-2 px-4 border-b border-lime-200 text-left text-sm font-semibold text-lime-600">{{ header }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {# Rows passed in the context #}
+    {% for row in rows %}
+      <tr class="{% if loop.index is even %}bg-lime-200{% else %}bg-lime-500{% endif %} hover:bg-lime-50">
+        {% for cell in row %}
+          <td class="py-2 px-4 border-b border-lime-200 text-sm text-lime-700">{{ cell }}</td>
+        {% endfor %}
+        {# <td>
+          <a href="{{ path('app_invoices_show', {'id': invoiceId}) }}" class="py-2 px-4 border-b border-lime-200 text-sm text-lime-700">show</a>
+          <a href="{{ path('app_invoices_edit', {'id': invoiceId}) }}" class="py-2 px-4 border-b border-lime-200 text-sm text-lime-700">edit</a>
+        </td> #}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

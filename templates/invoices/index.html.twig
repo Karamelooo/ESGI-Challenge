@@ -3,44 +3,26 @@
 {% block title %}Invoices index{% endblock %}
 
 {% block body %}
-    <h1>Invoices index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Invoices_number</th>
-                <th>Last_payment_date</th>
-                <th>Last_send_date</th>
-                <th>Due_date</th>
-                <th>Update_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for invoice in invoices %}
-            <tr>
-                <td>{{ invoice.invoicesNumber }}</td>
-                <td>
-                    {% for status in invoice.status %}
-                        {{ status }}<br>
-                    {% endfor %}
-                </td>
-                <td>{{ invoice.lastPaymentDate ? invoice.lastPaymentDate|date('Y-m-d') : '' }}</td>
-                <td>{{ invoice.lastSendDate ? invoice.lastSendDate|date('Y-m-d') : '' }}</td>
-                <td>{{ invoice.dueDate ? invoice.dueDate|date('Y-m-d') : '' }}</td>
-                <td>{{ invoice.updateAt ? invoice.updateAt|date('Y-m-d h:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_invoices_show', {'id': invoice.id}) }}">show</a>
-                    <a href="{{ path('app_invoices_edit', {'id': invoice.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_invoices_new') }}">Create new</a>
+    <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-bold my-4 text-lime-600">Invoices index</h1>
+        <div class="bg-white shadow-md rounded my-6">
+            {% include 'components/table.html.twig' with {
+                    rows: invoices,
+                    invoiceId: 'id',
+                } %}
+        </div>
+        <div class="flex space-x-4 mt-4">
+            {% include 'components/button.html.twig' with {
+            'type':'a',
+            'icon':'fa fa-plus',
+            'label': 'Créer un nouveau devis',
+            'href': path('app_invoices_new_devis')} %}
+            {% include 'components/button.html.twig' with {
+            'type':'a',
+            'icon':'fa fa-plus',
+            'label': 'Créer un nouvelle facture',
+            'href': path('app_invoices_new_facture')} %}
+            </a>
+        </div>
+    </div>
 {% endblock %}

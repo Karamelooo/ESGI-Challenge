@@ -10,22 +10,26 @@
                 <span class="px-3 py-1 bg-yellow-200 text-black rounded-full">1 Envoyé</span>
                 <span class="px-3 py-1 bg-green-500 text-white rounded-full">1 Validé</span>
             </div>
-            <button class="bg-green-500 text-white px-4 py-2 rounded">+ Nouveau</button>
+                            {% include 'components/button.html.twig' with {
+                    'type':'a',
+                    'icon':'fa fa-plus',
+                    'label': 'Nouveau',
+                    'href': path('app_compagny_new')} %}
         </div>
         <div class="overflow-x-auto">
             <table class="min-w-full border-collapse">
                 <thead>
                 <tr>
-                    <th class="border-b p-4 text-left bg-gray-100">N°</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Client</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Catégorie</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Service</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Action</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Statut</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">N°</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Client</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Catégorie</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Service</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Action</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Statut</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="even:bg-gray-50">
+                <tr class="even:bg-gray-50 dark:even:bg-gray-800">
                     <td class="border-b p-4">1</td>
                     <td class="border-b p-4">Hugo Petit</td>
                     <td class="border-b p-4">Création</td>
@@ -33,7 +37,7 @@
                     <td class="border-b p-4">Refonte</td>
                     <td class="border-b p-4"><span class="px-2 py-1 bg-yellow-500 text-white rounded-full">En cours</span></td>
                 </tr>
-                <tr class="even:bg-gray-50">
+                <tr class="even:bg-gray-50 dark:even:bg-gray-800">
                     <td class="border-b p-4">2</td>
                     <td class="border-b p-4">Léo Poumailloux</td>
                     <td class="border-b p-4">Maintenance</td>
@@ -41,7 +45,7 @@
                     <td class="border-b p-4">Révision annuelle</td>
                     <td class="border-b p-4"><span class="px-2 py-1 bg-green-500 text-white rounded-full">Validé</span></td>
                 </tr>
-                <tr class="even:bg-gray-50">
+                <tr class="even:bg-gray-50 dark:even:bg-gray-800">
                     <td class="border-b p-4">3</td>
                     <td class="border-b p-4">Arthur Valentim</td>
                     <td class="border-b p-4">Dépannage</td>
@@ -49,7 +53,7 @@
                     <td class="border-b p-4">Contrôle technique</td>
                     <td class="border-b p-4"><span class="px-2 py-1 bg-yellow-200 text-black rounded-full">Envoyé</span></td>
                 </tr>
-                <tr class="even:bg-gray-50">
+                <tr class="even:bg-gray-50 dark:even:bg-gray-800">
                     <td class="border-b p-4">4</td>
                     <td class="border-b p-4">Léo Guirado</td>
                     <td class="border-b p-4">Contrôle</td>

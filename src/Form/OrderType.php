@@ -3,7 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Order;
+use App\Entity\Tax;
+use App\Entity\Services;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,9 +18,13 @@ class OrderType extends AbstractType
         $builder
             ->add('reducer')
             ->add('quantity')
-            ->add('invoice')
-            ->add('service')
-            ->add('tax')
+            ->add('service', ServicesType::class)
+            ->add('tax', EntityType::class, [
+                'class' => Tax::class,
+                'choice_label' => function ($tax) {
+                    return $tax->getPercent();
+                },
+            ])
         ;
     }
 

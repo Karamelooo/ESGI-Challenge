@@ -6,23 +6,27 @@
     <div class="flex-grow p-6">
         <div class="flex justify-between items-center mb-4">
             <div class="flex space-x-2"></div>
-            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_client_new') }}">Nouveau</a></button>
+            {% include 'components/button.html.twig' with {
+            'type':'a',
+            'icon':'fa fa-plus',
+            'label': 'Nouveau',
+            'href': path('app_client_new')} %}
         </div>
         <div class="overflow-x-auto">
             <table class="min-w-full border-collapse">
                 <thead>
                 <tr>
-                    <th class="border-b p-4 text-left bg-gray-100">Entreprise</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Prénom</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Nom</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Email</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Téléphone</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Adresse</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Ville</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Code postal</th>
-                    <th class="border-b p-4 text-left bg-gray-100">SIRET</th>
-                    <th class="border-b p-4 text-left bg-gray-100">NAF</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Entreprise</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Prénom</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Nom</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Email</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Téléphone</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Adresse</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Ville</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Code postal</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">SIRET</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">NAF</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Actions</th>
                 </tr>
                 </thead>
                 <tbody>

@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="min-h-screen flex justify-center">
-        <div class="bg-white p-16 rounded shadow-2xl w-full">
+        <div class="p-16 rounded shadow-2xl w-full">
             <a href="{{ path('app_user.show_all') }}" class="block w-auto mb-3 bg-green-600 hover:bg-green-500 p-4 rounded text-white hover:text-white transition duration-300"><--- Retour</a>
 
             {% for flash_error in app.flashes('verify_email_error') %}

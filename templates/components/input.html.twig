@@ -1,0 +1,7 @@
+{# templates/components/input.html.twig #}
+{% block input_widget %}
+    {% set type = type|default('text') %}
+    {% set attr = attr|merge({'class': (attr.class|default('ok') ~ ' border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500')|trim}) %}
+    {% set attr = attr|merge({'placeholder': placeholder}) %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} />
+{% endblock input_widget %}

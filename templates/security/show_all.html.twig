@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="min-h-screen flex justify-center">
-        <div class="bg-white p-16 rounded shadow-2xl w-full">
+        <div class=" p-16 rounded shadow-2xl w-full">
             {% for flash_error in app.flashes('verify_email_error') %}
                 <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
             {% endfor %}
@@ -15,9 +15,9 @@
                 <table class="table-auto min-w-full border-collapse">
                     <thead>
                         <tr>
-                            <th class="border-b p-4 text-left bg-gray-100">Utilisateur</th>
-                            <th class="border-b p-4 text-left bg-gray-100">Role</th>
-                            <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                            <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Utilisateur</th>
+                            <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Role</th>
+                            <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Actions</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -6,25 +6,29 @@
     <div class="flex-grow p-6">
         <div class="flex justify-between items-center mb-4">
             <div class="flex space-x-2"></div>
-            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_compagny_new') }}">Nouvelle</a></button>
+            {% include 'components/button.html.twig' with {
+            'type':'a',
+            'icon':'fa fa-plus',
+            'label': 'Nouvelle',
+            'href': path('app_compagny_new')} %}
         </div>
         <div class="overflow-x-auto">
             <table class="min-w-full border-collapse">
                 <thead>
                 <tr>
-                    <th class="border-b p-4 text-left bg-gray-100">Nom</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Logo</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Adresse</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Ville</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Email</th>
-                    <th class="border-b p-4 text-left bg-gray-100">SIRET</th>
-                    <th class="border-b p-4 text-left bg-gray-100">NAF</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Site web</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Numéro de téléphone</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Capital</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Capital</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Date de création</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Nom</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Logo</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Adresse</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Ville</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Email</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">SIRET</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">NAF</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Site web</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Numéro de téléphone</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Capital</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Capital</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Date de création</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Actions</th>
                 </tr>
                 </thead>
                 <tbody>

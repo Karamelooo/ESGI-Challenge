@@ -3,23 +3,38 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+    <div class="min-h-screen flex justify-center">
+        <div class="bg-white p-16 rounded shadow-2xl w-full">
+            {% for flash_error in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            {% endfor %}
 
-    <h1>Register</h1>
+            <h2 class="text-3xl font-bold mb-10 text-gray-800">Création de compte</h2>
 
-    {{ form_errors(registrationForm) }}
+            {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.firstname) }}
-        {{ form_row(registrationForm.lastname) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+            {{ form_start(registrationForm) }}
+                {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}})}}
+                {{ form_widget(registrationForm.email, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}})}}
+                
+                {{ form_label(registrationForm.firstname, 'Prénom', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}})}}
+                {{ form_widget(registrationForm.firstname, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}})}}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                {{ form_label(registrationForm.lastname, 'Nom', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}})}}
+                {{ form_widget(registrationForm.lastname, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}})}}
+            
+                {{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}})}}
+                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}})}}
+                
+                <div class="flex mt-2">
+                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'w-5'}})}}
+                    {{ form_label(registrationForm.agreeTerms, 'Accepter les conditions', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}})}}
+                </div>
+
+                <div class="mt-6">
+                    <button type="submit" class="block w-full bg-green-500 hover:bg-green-300 p-4 rounded text-white hover:text-white transition duration-300">Créer un compte</button>
+                </div>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
 {% endblock %}

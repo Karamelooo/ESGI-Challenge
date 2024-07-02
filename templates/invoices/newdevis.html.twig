@@ -59,7 +59,12 @@
         <div colspan="4" class="py-2 text-right">Mention "Bon pour accord", date et signature</div>
         <div colspan="4" class="py-2 text-right">../../....</div>
     </div>
-    {% include 'components/button.html.twig' with {'icon': 'fa-regular fa-paper-plane','label': 'Envoyer'} %}
+    {% include 'components/button.html.twig' with {
+        'icon': 'fa-regular fa-paper-plane',
+        'label': 'Envoyer',
+        'type': 'a',
+        'href': path('app_invoices_send', { 'id': invoice.id })
+        } %}
     {{ form_end(form) }}
 </div>
 

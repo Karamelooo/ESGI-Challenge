@@ -17,7 +17,6 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\AppAuthenticator
-            access_denied_url: /dashboard
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -44,7 +43,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/users, roles: ROLE_ADMIN }
         - { path: ^/dashboard, roles: ROLE_USER }
         - { path: ^/invoices, roles: ROLE_USER }
         - { path: ^/services, roles: ROLE_USER }

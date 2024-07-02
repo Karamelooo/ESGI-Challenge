@@ -3,49 +3,45 @@
 {% block title "Utilisateurs" %}
 
 {% block body %}
-    <div class="min-h-screen flex justify-center">
-        <div class="bg-white p-16 rounded shadow-2xl w-full">
-            {% for flash_error in app.flashes('verify_email_error') %}
-                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+
+    <h1>Liste Utilisateurs (admin)</h1>
+
+    <br>
+
+    <table class="table-auto">
+        <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>
+                    <p>{{user.lastname ~ " " ~ user.firstname ~ " - " ~ user.Email }}</p>
+                </td>
+                <td>
+                    {% for role in user.roles %}
+                    <p>{{role}}</p>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('app_user.show', {id: user.id}) }}" class="text-sky-400">Inspecter</a>
+                </td>
+                <td>
+                    <a href="{{ path('app_user.edit', {id: user.id }) }}" class="text-green-600">Editer</a>
+                </td>
+                <td>
+                    <form action="{{ path('app_user.delete', {id: user.id }) }}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="text-red-400">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
             {% endfor %}
-
-            <h2 class="text-3xl font-bold mb-10 text-gray-800">Liste Utilisateurs (admin)</h2>
-
-            <div class="overflow-x-auto mt-6">
-                <table class="table-auto min-w-full border-collapse">
-                    <thead>
-                        <tr>
-                            <th class="border-b p-4 text-left bg-gray-100">Utilisateur</th>
-                            <th class="border-b p-4 text-left bg-gray-100">Role</th>
-                            <th class="border-b p-4 text-left bg-gray-100">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in users %}
-                        <tr class="even:bg-gray-50">
-                            <td class="border-b p-4">
-                                <p>{{user.lastname ~ " " ~ user.firstname ~ " - " ~ user.Email }}</p>
-                            </td>
-                            <td class="border-b p-4">
-                                {% for role in user.roles %}
-                                <p>{{role}}</p>
-                                {% endfor %}
-                            </td>
-                            <td class="border-b p-4 align-middle">
-                                <a href="{{ path('app_user.show', {id: user.id}) }}" class="block w-full bg-blue-400 hover:bg-blue-200 p-2 rounded transition duration-300 text-center">Inspecter</a>
-                                <a href="{{ path('app_user.edit', {id: user.id }) }}" class="block w-full bg-green-500 hover:bg-green-300 p-2 rounded transition duration-300 text-center">Editer</a>
-                                <form action="{{ path('app_user.delete', {id: user.id }) }}" method="post">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="block w-full bg-red-400 hover:bg-red-200 p-2 rounded transition duration-300">Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
+        </tbody>
+    </table>
 
 {% endblock %}

@@ -14,14 +14,14 @@ md:block md:w-1/5 md:block md:relative md:h-auto">
                 <ul class="flex flex-col items-center
                 md:items-start">
                     {% include 'components/menu-item.html.twig' with {
-                        'icon': 'fa-solid fa-building',
-                        'link': '/compagny/',
-                        'label': 'Entreprise'
-                        } %}
-                    {% include 'components/menu-item.html.twig' with {
                         'icon': 'fas fa-tachometer-alt',
                         'link': '/dashboard/',
                         'label': 'Tableau de bord'
+                        } %}
+                    {% include 'components/menu-item.html.twig' with {
+                        'icon': 'fa-solid fa-building',
+                        'link': '/compagny/',
+                        'label': 'Entreprise'
                         } %}
                     {% include 'components/menu-item.html.twig' with {
                         'icon': 'fas fa-file-invoice',

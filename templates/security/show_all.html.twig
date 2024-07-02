@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="min-h-screen flex justify-center">
-        <div class="bg-white p-16 rounded shadow-2xl w-full">
+        <div class=" p-16 rounded shadow-2xl w-full">
             {% for flash_error in app.flashes('verify_email_error') %}
                 <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
             {% endfor %}

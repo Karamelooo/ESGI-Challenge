@@ -48,6 +48,9 @@ class Client
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Invoices::class)]
     private Collection $invoices;
 
+    #[ORM\ManyToOne(inversedBy: 'clients')]
+    private ?Compagny $compagny = null;
+
     public function __construct()
     {
         $this->invoices = new ArrayCollection();
@@ -207,4 +210,22 @@ class Client
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->company . ' (' . $this->id . ')';
+    }
+
+    public function getCompagny(): ?Compagny
+    {
+        return $this->compagny;
+    }
+
+    public function setCompagny(?Compagny $compagny): static
+    {
+        $this->compagny = $compagny;
+
+        return $this;
+    }
+
 }

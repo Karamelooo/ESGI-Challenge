@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
 #[ORM\Entity(repositoryClass: CompagnyRepository::class)]
 class Compagny
@@ -55,16 +56,21 @@ class Compagny
     #[ORM\OneToMany(mappedBy: 'compagny_subcription', targetEntity: Subscription::class)]
     private Collection $subscriptions;
 
-    #[ORM\ManyToOne(inversedBy: 'company')]
-    private ?Invoices $invoices = null;
+    #[ORM\OneToMany(mappedBy: 'company', targetEntity: Invoices::class)]
+    private Collection $invoices;
 
     #[ORM\OneToMany(mappedBy: 'company', targetEntity: User::class)]
     private Collection $users;
+
+    #[ORM\OneToMany(mappedBy: 'compagny', targetEntity: Client::class)]
+    private Collection $clients;
 
     public function __construct()
     {
         $this->subscriptions = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->invoices = new ArrayCollection();
+        $this->clients = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -251,14 +257,32 @@ class Compagny
         return $this;
     }
 
-    public function getInvoices(): ?Invoices
+    /**
+     * @return Collection|Invoices[]
+     */
+    public function getInvoices(): Collection
     {
         return $this->invoices;
     }
 
-    public function setInvoices(?Invoices $invoices): static
+    public function addInvoice(Invoices $invoice): self
     {
-        $this->invoices = $invoices;
+        if (!$this->invoices->contains($invoice)) {
+            $this->invoices[] = $invoice;
+            $invoice->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvoice(Invoices $invoice): self
+    {
+        if ($this->invoices->removeElement($invoice)) {
+            // set the owning side to null (unless already changed)
+            if ($invoice->getCompany() === $this) {
+                $invoice->setCompany(null);
+            }
+        }
 
         return $this;
     }
@@ -289,6 +313,37 @@ class Compagny
                 $user->setCompany(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Client>
+     */
+    public function getClients(): Collection
+    {
+        return $this->clients;
+    }
+
+    public function addClient(Client $client): static
+    {
+        if (!$this->clients->contains($client)) {
+            $this->clients->add($client);
+            $client->setCompagny($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClient(Client $client): static
+    {
+        if ($this->clients->removeElement($client)) {
+            // set the owning side to null (unless already changed)
+            if ($client->getCompagny() === $this) {
+                $client->setCompagny(null);
+            }
+        }
+
 
         return $this;
     }

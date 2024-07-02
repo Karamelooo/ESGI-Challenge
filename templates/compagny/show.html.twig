@@ -3,64 +3,50 @@
 {% block title %}Entreprise{% endblock %}
 
 {% block body %}
-    <h1>Entreprise</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Nom</th>
-                <td>{{ compagny.name }}</td>
-            </tr>
-            <tr>
-                <th>Logo</th>
-                <td>{{ compagny.logoPath }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ compagny.adress }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ compagny.city }}</td>
-            </tr>
-            <tr>
-                <th>Code postal</th>
-                <td>{{ compagny.zipCode }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ compagny.email }}</td>
-            </tr>
-            <tr>
-                <th>Siret</th>
-                <td>{{ compagny.siret }}</td>
-            </tr>
-            <tr>
-                <th>NAF</th>
-                <td>{{ compagny.naf }}</td>
-            </tr>
-            <tr>
-                <th>Site Web</th>
-                <td>{{ compagny.website }}</td>
-            </tr>
-            <tr>
-                <th>Numéro de téléphone</th>
-                <td>{{ compagny.phone }}</td>
-            </tr>
-            <tr>
-                <th>Capital</th>
-                <td>{{ compagny.capital }}</td>
-            </tr>
-            <tr>
-                <th>Date de création</th>
-                <td>{{ compagny.createdAt|date('d/m/Y') }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_compagny_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('app_compagny_edit', {'id': compagny.id}) }}">Modifier</a>
-
-    {{ include('compagny/_delete_form.html.twig') }}
+    <div class="flex-grow p-6">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-2"></div>
+            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_compagny_new') }}">Nouvelle</a></button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+                <thead>
+                <tr>
+                    <th class="border-b p-4 text-left bg-gray-100">Nom</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Logo</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Adresse</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Ville</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Email</th>
+                    <th class="border-b p-4 text-left bg-gray-100">SIRET</th>
+                    <th class="border-b p-4 text-left bg-gray-100">NAF</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Site web</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Numéro de téléphone</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Capital</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Capital</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Date de création</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">{{ compagny.name }}</td>
+                    <td class="border-b p-4">{{ compagny.logoPath }}</td>
+                    <td class="border-b p-4">{{ compagny.adress }}</td>
+                    <td class="border-b p-4">{{ compagny.city }}</td>
+                    <td class="border-b p-4">{{ compagny.zipCode }}</td>
+                    <td class="border-b p-4">{{ compagny.email }}</td>
+                    <td class="border-b p-4">{{ compagny.siret }}</td>
+                    <td class="border-b p-4">{{ compagny.naf }}</td>
+                    <td class="border-b p-4">{{ compagny.website }}</td>
+                    <td class="border-b p-4">{{ compagny.phone }}</td>
+                    <td class="border-b p-4">{{ compagny.capital }}</td>
+                    <td class="border-b p-4">{{ compagny.createdAt|date('d/m/Y') }}</td>
+                    <td class="border-b p-4">
+                        {{ include('compagny/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

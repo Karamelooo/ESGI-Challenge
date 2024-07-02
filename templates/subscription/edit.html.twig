@@ -3,11 +3,7 @@
 {% block title %}Modifier un abonnement{% endblock %}
 
 {% block body %}
-    <h1>Modifier un abonnement</h1>
-
     {{ include('subscription/_form.html.twig', {'button_label': 'Enregistrer'}) }}
-
-    <a href="{{ path('app_subscription_index') }}">Retour à la liste</a>
 
     {{ include('subscription/_delete_form.html.twig') }}
 {% endblock %}

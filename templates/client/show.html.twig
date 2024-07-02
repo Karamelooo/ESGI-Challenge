@@ -3,56 +3,45 @@
 {% block title %}Client{% endblock %}
 
 {% block body %}
-    <h1>Client</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Entreprise</th>
-                <td>{{ client.company }}</td>
-            </tr>
-            <tr>
-                <th>Prénom</th>
-                <td>{{ client.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ client.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ client.email }}</td>
-            </tr>
-            <tr>
-                <th>Téléphone</th>
-                <td>{{ client.phone }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ client.address }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ client.city }}</td>
-            </tr>
-            <tr>
-                <th>Code postal</th>
-                <td>{{ client.zipCode }}</td>
-            </tr>
-            <tr>
-                <th>Siret</th>
-                <td>{{ client.siret }}</td>
-            </tr>
-            <tr>
-                <th>Naf</th>
-                <td>{{ client.naf }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_client_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('app_client_edit', {'id': client.id}) }}">Editer</a>
-
-    {{ include('client/_delete_form.html.twig') }}
+    <div class="flex-grow p-6">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-2"></div>
+            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_client_new') }}">Nouveau</a></button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+                <thead>
+                <tr>
+                    <th class="border-b p-4 text-left bg-gray-100">Entreprise</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Prénom</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Nom</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Email</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Téléphone</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Adresse</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Ville</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Code postal</th>
+                    <th class="border-b p-4 text-left bg-gray-100">SIRET</th>
+                    <th class="border-b p-4 text-left bg-gray-100">NAF</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">{{ client.company }}</td>
+                    <td class="border-b p-4">{{ client.firstname }}</td>
+                    <td class="border-b p-4">{{ client.lastname }}</td>
+                    <td class="border-b p-4">{{ client.email }}</td>
+                    <td class="border-b p-4">{{ client.phone }}</td>
+                    <td class="border-b p-4">{{ client.address }}</td>
+                    <td class="border-b p-4">{{ client.city }}</td>
+                    <td class="border-b p-4">{{ client.zipCode }}</td>
+                    <td class="border-b p-4">{{ client.siret }}</td>
+                    <td class="border-b p-4">{{ client.naf }}</td>
+                    <td class="border-b p-4">
+                        {{ include('client/_delete_form.html.twig') }}
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

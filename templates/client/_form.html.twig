@@ -1,4 +1,80 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+{% block body %}
+    <div class="min-h-screen flex justify-center">
+        <div class="bg-white p-16 rounded shadow-2xl w-full">
+            <h2 class="text-3xl font-bold mb-10 text-gray-800">Gestion client</h2>
+
+            {{ form_start(form) }}
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    {{ form_label(form.company, 'Nom entreprise', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.company, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.company) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.firstname, 'Prénom', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.firstname, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.firstname) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.lastname, 'Nom', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.lastname, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.lastname) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.email, 'Email', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.email) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.phone, 'Numéro de téléphone', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.phone, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.phone) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.address, 'Adresse', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.address, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.address) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.city, 'Ville', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.city, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.city) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.zip_code, 'Code postal', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.zip_code, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.zip_code) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.siret, 'SIRET', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.siret, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.siret) }}
+                </div>
+
+                <div>
+                    {{ form_label(form.naf, 'NAF', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
+                    {{ form_widget(form.naf, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_errors(form.naf) }}
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <button class="block w-full bg-green-500 hover:bg-green-300 p-4 rounded text-white hover:text-white transition duration-300">Enregistrer</button>
+                <a href="{{ path('app_client_index') }}">Retour à la liste</a>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
 {{ form_end(form) }}

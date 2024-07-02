@@ -11,22 +11,43 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 #[Route('/compagny')]
 class CompagnyController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route('/', name: 'app_compagny_index', methods: ['GET'])]
     public function index(CompagnyRepository $compagnyRepository): Response
     {
+        $user = $this->security->getUser();
+
+        if (!$user) {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour accéder à cette page.');
+        }
+        
         return $this->render('compagny/index.html.twig', [
-            'compagnies' => $compagnyRepository->findAll(),
+            'compagnies' => $compagnyRepository->findByUser($user),
         ]);
     }
 
     #[Route('/new', name: 'app_compagny_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->security->getUser();
+
+        if (!$user) {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour accéder à cette page.');
+        }
+
         $compagny = new Compagny();
+        $compagny->addUser($user);
         $form = $this->createForm(CompagnyType::class, $compagny);
         $form->handleRequest($request);
 
@@ -70,6 +91,12 @@ class CompagnyController extends AbstractController
     #[Route('/{id}/edit', name: 'app_compagny_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Compagny $compagny, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->security->getUser();
+
+        if (!$user || !$compagny->getUsers()->contains($user)) {
+            throw $this->createAccessDeniedException('Vous ne pouvez pas éditer cette compagnie.');
+        }
+
         $form = $this->createForm(CompagnyType::class, $compagny);
         $form->handleRequest($request);
 
@@ -88,6 +115,12 @@ class CompagnyController extends AbstractController
     #[Route('/{id}', name: 'app_compagny_delete', methods: ['POST'])]
     public function delete(Request $request, Compagny $compagny, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->security->getUser();
+
+        if (!$user || !$compagny->getUsers()->contains($user)) {
+            throw $this->createAccessDeniedException('Vous ne pouvez pas éditer cette compagnie.');
+        }
+
         if ($this->isCsrfTokenValid('delete'.$compagny->getId(), $request->request->get('_token'))) {
             $entityManager->remove($compagny);
             $entityManager->flush();

@@ -42,7 +42,7 @@ class SecurityController extends AbstractController
         $em->remove($user);
         $em->flush();
         $this->addFlash('success', 'Utilisateur supprimé');
-        return $this->redirectToRoute('app_default');
+        return $this->redirectToRoute('dashboard');
     }
 
     #[Route(path: '/user/edit/{id}', name: 'app_user.edit', methods: ['GET', 'POST'])]

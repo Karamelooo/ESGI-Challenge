@@ -3,31 +3,38 @@
 {% block title %}Se connecter !{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+<div class="min-h-screen flex justify-center">
+    <div class="bg-white p-16 rounded shadow-2xl w-full">
+        <form method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <h2 class="text-3xl font-bold mb-10 text-gray-800">Veuillez vous connecter</h2>
+            <label for="inputEmail" class="block mb-1 font-bold text-gray-500">Email</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500" autocomplete="email" required autofocus>
+            <label for="inputPassword" class="block mb-1 font-bold text-gray-500">Mot de passe</label>
+            <input type="password" name="password" id="inputPassword" class="form-control w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500" autocomplete="current-password" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+            <input type="hidden" name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}"
+            >
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Se connecter
-    </button>
-</form>
+            <div class="mt-6">
+                <button class="block w-full bg-green-500 hover:bg-green-300 p-4 rounded text-white hover:text-white transition duration-300" type="submit">
+                    Se connecter
+                </button>
+                <p><a href="{{ url( 'app_register' )}}" class="text-sky-700">Créer un compte</a></p>
+            </div>
 
-<p><a href="{{ url( 'app_register' )}}" class="text-sky-700">Créer un compte</a></p>
+        </form>
+    </div>
+</div>
+
 {% endblock %}

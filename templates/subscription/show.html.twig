@@ -3,24 +3,29 @@
 {% block title %}Abonnement{% endblock %}
 
 {% block body %}
-    <h1>Abonnement</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Date de début</th>
-                <td>{{ subscription.startDate ? subscription.startDate|date('d-m-Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date de fin</th>
-                <td>{{ subscription.endDate ? subscription.endDate|date('d-m-Y') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_subscription_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('app_subscription_edit', {'id': subscription.id}) }}">Modifier</a>
-
-    {{ include('subscription/_delete_form.html.twig') }}
+    <div class="flex-grow p-6">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-2"></div>
+            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_subscription_new') }}">Nouvel</a></button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+                <thead>
+                <tr>
+                    <th class="border-b p-4 text-left bg-gray-100">Date de début</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Date de fin</th>
+                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="even:bg-gray-50">
+                    <td class="border-b p-4">{{ subscription.startDate ? subscription.startDate|date('d-m-Y') : '' }}</td>
+                    <td class="border-b p-4">{{ subscription.endDate ? subscription.endDate|date('d-m-Y') : '' }}</td>
+                    <td class="border-b p-4">
+                        {{ include('subscription/_delete_form.html.twig') }}
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

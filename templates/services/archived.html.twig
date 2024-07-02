@@ -7,20 +7,28 @@
     <div class="flex-grow p-6">
         <div class="flex justify-end items-center mb-4">
             <div class="flex space-x-2"></div>
-            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_services_new') }}">Nouveau</a></button>
-            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_services_new') }}">Services</a></button>
+            {% include 'components/button.html.twig' with {
+            'type':'a',
+            'icon':'fa fa-plus',
+            'label': 'Nouveau',
+            'href': path('app_services_new')} %}
+            {% include 'components/button.html.twig' with {
+            'type':'a',
+            'icon':'fa fa-plus',
+            'label': 'Services',
+            'href': path('app_services_new')} %}
         </div>
         <div class="overflow-x-auto">
             <table class="min-w-full border-collapse">
                 <thead>
                 <tr>
-                    <th class="border-b p-4 text-left bg-gray-100">Nom</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Famille</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Prix de vente</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Prix d'achat</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Taxes</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Dernière modification</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Nom</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Famille</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Prix de vente</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Prix d'achat</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Taxes</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Dernière modification</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Actions</th>
                 </tr>
                 </thead>
                 <tbody>

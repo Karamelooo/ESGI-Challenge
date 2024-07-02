@@ -1,6 +1,10 @@
 <header class="bg-lime-50 dark:bg-lime-950 dark:text-white text-black mx-auto flex justify-between items-center py-4 p-4 w-full z-10
 md:block md:w-1/5 md:mx-0 md:absolute">
     <a href="/" class="text-xl font-bold hover:text-gray-400">WorkWise</a>
+    {% include 'components/button.html.twig' with {
+        'icon':'fa fa-moon',
+        'id':'theme-toggle',
+        'label': 'Dark Mode'} %}
     <button id="menu-toggle" class="md:hidden focus:outline-none">
         <i class="fas fa-bars"></i>
     </button>
@@ -50,8 +54,6 @@ md:block md:w-1/5 md:block md:relative">
                         'link': '/logout/',
                         'label': 'Déconnexion'
                         } %}
-                        <button id="theme-toggle" class="mt-4 p-2 bg-lime-500 text-white rounded">Toggle Dark Mode</button>
-
                 </ul>
             </nav>
         <script>

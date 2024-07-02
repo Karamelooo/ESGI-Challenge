@@ -17,6 +17,7 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\AppAuthenticator
+            access_denied_url: /dashboard
             logout:
                 path: app_logout
                 # where to redirect after logout

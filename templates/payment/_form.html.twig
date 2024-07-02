@@ -1,7 +1,7 @@
 {{ form_start(form) }}
 {% block body %}
     <div class="min-h-screen flex justify-center">
-        <div class="bg-white p-16 rounded shadow-2xl w-full">
+        <div class="p-16 rounded shadow-2xl w-full">
             <h2 class="text-3xl font-bold mb-10 text-gray-800">Gestion de paiement</h2>
 
             {{ form_start(form) }}
@@ -9,7 +9,7 @@
             <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
                 <div>
                     {{ form_label(form.amount, 'Paiement', {'label_attr': {'class': 'block mb-1 font-bold text-gray-500'}}) }}
-                    {{ form_widget(form.amount, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500'}}) }}
+                    {{ form_widget(form.amount, {'attr': {'class': 'w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-purple-500 dark:border-gray-800 dark:bg-onyx-800'}}) }}
                     {{ form_errors(form.amount) }}
                 </div>
             </div>

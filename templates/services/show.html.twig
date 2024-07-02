@@ -7,20 +7,24 @@
     <div class="flex-grow p-6">
         <div class="flex justify-between items-center mb-4">
             <div class="flex space-x-2"></div>
-            <button class="bg-green-500 text-white px-4 py-2 rounded"><a href="{{ path('app_payment_method_new') }}">Nouvelle</a></button>
+            {% include 'components/button.html.twig' with {
+            'type':'a',
+            'icon':'fa fa-plus',
+            'label': 'Nouvelle',
+            'href': path('app_payment_method_new')} %}
         </div>
         <div class="overflow-x-auto">
             <table class="min-w-full border-collapse">
                 <thead>
                 <tr>
-                    <th class="border-b p-4 text-left bg-gray-100">Nom</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Famille</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Prix de vente</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Prix d'achat</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Taxes</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Dernière modification</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Archivé</th>
-                    <th class="border-b p-4 text-left bg-gray-100">Actions</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Nom</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Famille</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Prix de vente</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Prix d'achat</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Taxes</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Dernière modification</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Archivé</th>
+                    <th class="border-b p-4 text-left bg-gray-100 dark:bg-gray-900">Actions</th>
                 </tr>
                 </thead>
                 <tbody>

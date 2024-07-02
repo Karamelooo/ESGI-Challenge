@@ -4,15 +4,36 @@ namespace App\DataFixtures;
 
 use App\Entity\Client;
 use App\Entity\Compagny;
+use App\Entity\User;
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Validator\Constraints\Date;
 
 class AppFixtures extends Fixture
 {
+    public function __construct(private readonly UserPasswordHasherInterface $hasher)
+    {
+    }
+
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
+
+        $admin_user = new User();
+        $admin_user->setRoles(['ROLE_ADMIN'])
+                    ->setEmail('admin@komsterr.ovh')
+                    ->setFirstname('Super')
+                    ->setLastname('Admin')
+                    ->setIsVerified(true)
+                    ->setCreatedAt(new DateTimeImmutable())
+                    ->setLastConnectionDate(new DateTimeImmutable())
+                    ->setPassword($this->hasher->hashPassword($admin_user, 'ADMIN'));
+
+        $manager->persist($admin_user);
 
         for ($i = 0; $i < 100; $i++) {
             $client = new Client();

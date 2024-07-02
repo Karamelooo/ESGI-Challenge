@@ -43,6 +43,14 @@ md:block md:w-1/5 md:block md:relative">
                         'link': '/client/',
                         'label': 'Clients'
                         } %}
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                    {% include 'components/menu-item.html.twig' with {
+                        'icon': 'fas fa-screwdriver-wrench',
+                        'link': '/users',
+                        'label': 'Administration'
+                        } %}
+                    {% endif %}
                     {% include 'components/menu-item.html.twig' with {
                         'icon': 'fas fa-right-from-bracket',
                         'link': '/logout/',
